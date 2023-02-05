@@ -1,18 +1,15 @@
 import Hapi from '@hapi/hapi';
-import { startEnvironment } from './helpers/environment';
+import { getEnvironmentVariables, startEnvironment } from './helpers/environment';
 import { logError } from './helpers/logger';
 import plugins from './plugins';
 
 const init = async () => {
-    const server = Hapi.server({
-        port: 8081,
-        host: 'localhost'
-    });
-
     try {
         startEnvironment();
 
-        // await server.register(require('@hapi/inert'));
+        const { host, port } = getEnvironmentVariables();
+        const server = Hapi.server({ port, host });
+
         await server.register(plugins);
         await server.start();
 
