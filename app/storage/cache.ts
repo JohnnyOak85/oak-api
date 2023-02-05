@@ -1,43 +1,56 @@
+import { createClient, RedisClientType } from 'redis';
+import { logError, logInfo } from '../helpers/logger';
+
+const TOTAL_TRIES = 3;
+
 export default class LocalCache {
-    private map = new Map();
+    private client: RedisClientType;
     private prefix: string;
+
+    private isCacheReady = () => this.client.isReady && this.client.isOpen;
+
+    private connect = () => {
+        if (this.isCacheReady()) return;
+
+        let counter = 0;
+
+        try {
+            return this.client.connect().then(() => logInfo('Cache is online'));
+        } catch (error) {
+            while (counter < TOTAL_TRIES) {
+                this.connect();
+                counter++;
+            }
+
+            logError(error, 'startCache');
+        }
+    };
+
+    private ensureConnection = async () => {
+        if (this.isCacheReady()) return;
+
+        await this.connect();
+    };
 
     constructor(id: string) {
         this.prefix = id;
+        this.client = createClient();
+        this.client.connect().then(() => logInfo('Cache is online'));
     }
 
-    private getList = () => this.map.get(`${this.prefix}:list`);
+    public get = <T>(key: string) =>
+        this.ensureConnection()
+            .then(() => this.client.get(`${this.prefix}:${key}`))
+            .then(value => JSON.parse(value as string) as T);
 
-    public get = <T>(key: string): Promise<T> =>
-        new Promise(resolve => resolve(this.map.get(`${this.prefix}:${key}`) as T));
+    public getAll = <T>(id: string) =>
+        this.ensureConnection()
+            .then(() => this.client.lRange(`${this.prefix}:list`, 0, -1))
+            .then(keys => keys.filter(key => key.includes(id)))
+            .then(keys => Promise.all(keys.map(key => this.get(key))) as Promise<T[]>);
 
-    public getAll = <T>(key: string): Promise<T[]> =>
-        new Promise(resolve => {
-            const list: string[] = this.map.get(`${this.prefix}:list`);
-
-            if (!list) {
-                resolve([]);
-            }
-
-            const items = list.filter(item => item === key).map(item => this.map.get(item));
-
-            resolve(items as T[]);
-        });
-
-    public put = (key: string, value: any): Promise<number> =>
-        new Promise(resolve => {
-            this.map.set(`${this.prefix}:${key}`, value);
-
-            if (!this.getList()) {
-                this.map.set(`${this.prefix}:list`, [key]);
-            } else {
-                const list = this.getList();
-
-                list.push(key);
-
-                this.map.set(`${this.prefix}:list`, list);
-            }
-
-            resolve(1);
-        });
+    public put = (key: string, value: any) =>
+        this.ensureConnection()
+            .then(() => this.client.set(`${this.prefix}:${key}`, JSON.stringify(value)))
+            .then(() => this.client.rPush(`${this.prefix}:list`, key));
 }
