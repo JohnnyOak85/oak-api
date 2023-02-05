@@ -1,5 +1,5 @@
 import { createLogger, format, transports } from 'winston';
-import { LOGS_PATH } from '../../paths';
+import paths from '../../paths';
 import { getTextFile } from './files';
 import { getTime } from './time';
 
@@ -17,4 +17,4 @@ export const logError = (error: any, func: string) =>
 
 export const logInfo = (message: string) => logger.log('info', `${message} at ${getTime()}`);
 
-export const getLog = () => ['Log:'].concat(getTextFile(`${LOGS_PATH}/log.txt`));
+export const getLog = () => ['Log:'].concat(getTextFile(`${paths.logs}/log.txt`));
