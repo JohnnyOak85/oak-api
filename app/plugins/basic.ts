@@ -14,8 +14,7 @@ const basic = {
             {
                 method: '*',
                 path: '/{p*}',
-                handler: (request, response, c) =>
-                    wrapper(request.url, response, buildNotFoundPage())
+                handler: (request, response) => wrapper(request.url, response, buildNotFoundPage())
             }
         ]);
     }
