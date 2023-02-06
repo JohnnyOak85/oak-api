@@ -1,51 +1,31 @@
-import LocalCache from './cache';
 import { Collector } from './collector';
 import Database from './database';
 
 const databases: Collector<Database<any>> = new Collector();
-const caches: Collector<LocalCache> = new Collector();
 
-const getStorage = <T extends {}>(storeId: string) => {
-    if (!caches.has(storeId)) {
-        caches.put(storeId, new LocalCache(storeId));
-    }
-
+const getDatabase = <T extends {}>(storeId: string) => {
     if (!databases.has(storeId)) {
         databases.put(storeId, new Database<T>(storeId));
     }
 
-    return {
-        cache: caches.get(storeId) as LocalCache,
-        db: databases.get(storeId) as Database<any>
-    };
+    return databases.get(storeId) as Database<T>;
 };
 
 export const get = async <T extends {}>(storeId: string, id: string) => {
     try {
-        const { cache, db } = getStorage<T>(storeId);
+        const db = getDatabase<T>(storeId);
 
-        const doc = await cache.get<T>(id);
-
-        if (!doc) {
-            const doc = await db?.get<T>(id);
-
-            cache.put(id, doc);
-
-            return doc;
-        }
-
-        return doc;
+        return db.get(id);
     } catch (error) {
         throw error;
     }
 };
 
-export const put = async <T extends {}>(storeId: string, id: string, item: any) => {
+export const put = async <T extends {}>(storeId: string, item: any) => {
     try {
-        const { cache, db } = getStorage<T>(storeId);
+        const db = getDatabase<T>(storeId);
 
-        db.put(item);
-        cache.put(id, item);
+        return db.put(item);
     } catch (error) {
         throw error;
     }
@@ -53,19 +33,9 @@ export const put = async <T extends {}>(storeId: string, id: string, item: any) 
 
 export const getAll = async <T extends {}>(storeId: string, id: string) => {
     try {
-        const { cache, db } = getStorage<T>(storeId);
+        const db = getDatabase<T>(storeId);
 
-        const docs = await cache.getAll<T>(id);
-
-        if (!docs.length) {
-            const docs = await db.getAll(id);
-
-            docs.forEach(doc => cache.put(doc._id, doc));
-
-            return docs;
-        }
-
-        return docs;
+        return db.getAll(id);
     } catch (error) {
         throw error;
     }
