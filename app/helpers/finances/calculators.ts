@@ -6,13 +6,13 @@ import { getSSCut } from './social_security';
 export const calculateTotal = (entries: number[]) =>
     entries.reduce((accumulated, entry) => accumulated + entry, 0);
 
-export const calculateLiquidWage = (grossWage: number) => {
+export const calculateLiquidWage = async (grossWage: number, applyPreviousRank: boolean) => {
     const totalHolidayPay = round(grossWage / TOTAL_MONTHS) * YEARLY_HOLIDAYS;
     const totalPay = grossWage + totalHolidayPay;
 
-    const IRSCut = getTotalIRSCut(grossWage);
+    const IRSCut = await getTotalIRSCut(grossWage, applyPreviousRank);
     const SSCut = getSSCut(totalPay);
-    const holidayCut = getPartialIRSCut(
+    const holidayCut = await getPartialIRSCut(
         grossWage - IRSCut - SSCut,
         totalHolidayPay / YEARLY_HOLIDAYS
     );

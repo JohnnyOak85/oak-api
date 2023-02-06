@@ -1,18 +1,19 @@
-import { DatabaseDoc } from '../../storage/database';
 import { ExpenseDoc, getExpenses } from './expenses';
 import { calculateLiquidWage, calculateTotal } from './calculators';
 import { round } from '../math';
 import { DebtDoc, getDebts } from './debts';
 import { getAll } from '../../storage/storage';
 import { logError } from '../logger';
+import { MaybeDocument } from 'nano';
 
-interface ContributorDoc extends DatabaseDoc {
+interface ContributorDoc extends MaybeDocument {
     financesCredentials: {
         username: string;
         password: string;
     };
     name: string;
     savings: number;
+    specialRank?: boolean;
     wage: number;
 }
 
@@ -32,7 +33,10 @@ interface Contributor {
 const DB_NAME = 'contributors';
 
 export const calculateFinances = async (contributor: ContributorDoc): Promise<Contributor> => {
-    const { IRSCuts, liquidWage, SSCut } = calculateLiquidWage(contributor.wage);
+    const { IRSCuts, liquidWage, SSCut } = await calculateLiquidWage(
+        contributor.wage,
+        !!contributor.specialRank
+    );
     const { expenses, expensesTotal } = await getExpenses(contributor.financesCredentials.username);
 
     return {
