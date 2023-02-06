@@ -10,7 +10,15 @@ const init = async () => {
 
         const tls = buildCertification();
         const { host, port } = getEnvironmentVariables();
-        const server = Hapi.server({ port, host, tls });
+        const routes = {
+            cors: {
+                origin: ['*'],
+                headers: ['Accept', 'Content-Type'],
+                additionalHeaders: ['X-Requested-With']
+            }
+        };
+
+        const server = Hapi.server({ port, host, tls, routes });
 
         await server.register(plugins);
         await server.start();
