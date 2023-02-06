@@ -1,10 +1,6 @@
 import nano from 'nano';
 import { getEnvironmentVariables } from '../helpers/environment';
 
-export interface DatabaseDoc {
-    _id: string;
-}
-
 export default class Database<T extends {}> {
     private db: nano.DocumentScope<T>;
 
@@ -13,12 +9,12 @@ export default class Database<T extends {}> {
         this.db = nano(dbAddress).db.use<T>(dbName);
     }
 
-    public get = async <T>(id: string) => (await this.db.get(id)) as T;
+    public get = async (id: string) => this.db.get(id) as Promise<T>;
 
     public getAll = async (key: string) =>
-        await this.db
+        this.db
             .list({ include_docs: true, start_key: key, end_key: `${key}\uffff` })
-            .then(({ rows }) => rows.map(({ doc }) => doc).filter(doc => doc));
+            .then(({ rows }) => rows.map(({ doc }) => doc).filter(doc => doc)) as Promise<T[]>;
 
-    public put = async (doc: T) => await this.db.insert(doc);
+    public put = async (doc: T) => this.db.insert(doc);
 }

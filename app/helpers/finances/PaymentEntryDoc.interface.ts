@@ -1,6 +1,6 @@
-import { DatabaseDoc } from '../../storage/database';
+import { MaybeDocument } from 'nano';
 
-export default interface PaymentEntryDoc extends DatabaseDoc {
+export default interface PaymentEntryDoc extends MaybeDocument {
     amount: number;
     type: string;
 }
