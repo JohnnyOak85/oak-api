@@ -25,7 +25,7 @@ const init = async () => {
 
         console.log('Server running on %s', server.info.uri);
     } catch (error) {
-        logger.logError(error, 'init');
+        logger.logError(error as Error, 'init');
     }
 };
 
