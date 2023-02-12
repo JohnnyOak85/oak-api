@@ -2,8 +2,8 @@ import { ExpenseDoc, getExpenses } from './expenses';
 import { calculateLiquidWage, calculateTotal } from './calculators';
 import { round } from '../math';
 import { DebtDoc, getDebts } from './debts';
-import { getAll } from '../../storage/storage';
-import { logError } from '../logger';
+import storage from '../../storage/storage';
+import logger from '../logger';
 import { MaybeDocument } from 'nano';
 
 interface ContributorDoc extends MaybeDocument {
@@ -66,7 +66,7 @@ const calculatePayments = async (contributor: Contributor, sharedWage: number) =
 
 export const getContributors = async () => {
     try {
-        const contributorDocs = await getAll<ContributorDoc>(DB_NAME, 'contributor');
+        const contributorDocs = await storage.getAll<ContributorDoc>(DB_NAME, 'contributor');
 
         const contributors = await Promise.all(
             contributorDocs.map(async contributor => await calculateFinances(contributor))
@@ -78,7 +78,7 @@ export const getContributors = async () => {
             contributors.map(async contributor => await calculatePayments(contributor, sharedWage))
         );
     } catch (error) {
-        logError(error, 'getContributors');
+        logger.logError(error, 'getContributors');
         throw error;
     }
 };

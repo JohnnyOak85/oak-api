@@ -1,9 +1,9 @@
 import paths from '../../paths';
-import { getEnvironmentVariables } from './environment';
+import { getEnvironment } from './environment';
 import { getFile } from './files';
 
 export const buildCertification = () => {
-    const { certificate } = getEnvironmentVariables();
+    const { certificate } = getEnvironment();
 
     return {
         key: getFile(`${paths.certificates}/${certificate}-key.pem`),

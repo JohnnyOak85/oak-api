@@ -1,7 +1,7 @@
 import { calculateTotal } from './calculators';
 import PaymentEntryDoc from './PaymentEntryDoc.interface';
-import { getAll } from '../../storage/storage';
-import { logError } from '../logger';
+import storage from '../../storage/storage';
+import logger from '../logger';
 
 type Reoccurrence = 'debt' | 'monthly' | 'sporadic' | 'weekly';
 
@@ -21,14 +21,14 @@ const DB_NAME = 'expenses';
 
 export const getExpenses = async (id = 'expense') => {
     try {
-        const expenses = await getAll<ExpenseDoc>(DB_NAME, id);
+        const expenses = await storage.getAll<ExpenseDoc>(DB_NAME, id);
 
         return {
             expenses,
             expensesTotal: calculateTotal(expenses.map(expense => expense.amount))
         };
     } catch (error) {
-        logError(error, 'getExpenses');
+        logger.logError(error, 'getExpenses');
         throw error;
     }
 };

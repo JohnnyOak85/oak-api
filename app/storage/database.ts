@@ -1,11 +1,11 @@
 import nano from 'nano';
-import { getEnvironmentVariables } from '../helpers/environment';
+import { getEnvironment } from '../helpers/environment';
 
 export default class Database<T extends {}> {
     private db: nano.DocumentScope<T>;
 
     constructor(dbName: string) {
-        const { dbAddress } = getEnvironmentVariables();
+        const { dbAddress } = getEnvironment();
         this.db = nano(dbAddress).db.use<T>(dbName);
     }
 

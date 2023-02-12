@@ -11,32 +11,32 @@ const getDatabase = <T extends {}>(storeId: string) => {
     return databases.get(storeId) as Database<T>;
 };
 
-export const get = async <T extends {}>(storeId: string, id: string) => {
-    try {
-        const db = getDatabase<T>(storeId);
+export default {
+    get: async <T extends {}>(storeId: string, id: string) => {
+        try {
+            const db = getDatabase<T>(storeId);
 
-        return db.get(id);
-    } catch (error) {
-        throw error;
-    }
-};
+            return db.get(id);
+        } catch (error) {
+            throw error;
+        }
+    },
+    getAll: async <T extends {}>(storeId: string, id: string) => {
+        try {
+            const db = getDatabase<T>(storeId);
 
-export const put = async <T extends {}>(storeId: string, item: any) => {
-    try {
-        const db = getDatabase<T>(storeId);
+            return db.getAll(id);
+        } catch (error) {
+            throw error;
+        }
+    },
+    put: async <T extends {}>(storeId: string, item: T) => {
+        try {
+            const db = getDatabase<T>(storeId);
 
-        return db.put(item);
-    } catch (error) {
-        throw error;
-    }
-};
-
-export const getAll = async <T extends {}>(storeId: string, id: string) => {
-    try {
-        const db = getDatabase<T>(storeId);
-
-        return db.getAll(id);
-    } catch (error) {
-        throw error;
+            return db.put(item);
+        } catch (error) {
+            throw error;
+        }
     }
 };
