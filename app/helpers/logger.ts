@@ -10,7 +10,7 @@ const logger = createLogger({
 });
 
 export default {
-    logError: ({ message }: Error, func: string) =>
+    logError: ({ message }: any, func: string) =>
         logger.error(`${getTime()} | Function: ${func} | Message: ${message}`),
     logInfo: (message: string) => logger.log('info', `${message} at ${getTime()}`)
 };
