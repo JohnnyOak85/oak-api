@@ -1,13 +1,13 @@
-import { boolean, number, object, string } from 'joi';
+import Joi from 'joi';
 
-export default object({
-    _id: string(),
-    _rev: string(),
-    done: boolean(),
-    event: string(),
-    image: string(),
-    memberId: string(),
-    timestamp: number().required(),
-    type: string().valid('birthday', 'celebration', 'release').required(),
-    url: string()
+export default Joi.object().keys({
+    _id: Joi.string(),
+    _rev: Joi.string(),
+    done: Joi.boolean(),
+    event: Joi.string(),
+    image: Joi.string(),
+    memberId: Joi.string(),
+    timestamp: Joi.number().required(),
+    type: Joi.string().valid('birthday', 'celebration', 'release').required(),
+    url: Joi.string()
 });
