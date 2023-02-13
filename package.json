@@ -16,11 +16,13 @@
         "joi": "^17.7.1",
         "moment": "^2.29.4",
         "nano": "^10.1.2",
+        "uuid": "^9.0.0",
         "winston": "^3.8.2"
     },
     "devDependencies": {
         "@types/dotenv": "^8.2.0",
         "@types/fs-extra": "^11.0.1",
-        "@types/node": "^18.11.18"
+        "@types/node": "^18.11.18",
+        "@types/uuid": "^9.0.0"
     }
 }
