@@ -5,9 +5,9 @@ export default Joi.object().keys({
     _rev: Joi.string(),
     done: Joi.boolean(),
     event: Joi.string(),
-    image: Joi.string(),
+    image: Joi.string().uri(),
     memberId: Joi.string(),
     timestamp: Joi.number().required(),
     type: Joi.string().valid('birthday', 'celebration', 'release').required(),
-    url: Joi.string()
+    url: Joi.string().uri()
 });
