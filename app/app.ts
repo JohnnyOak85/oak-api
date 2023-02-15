@@ -8,24 +8,27 @@ const init = async () => {
     try {
         environment.start();
 
-        const tls = certification.get();
         const { host, port } = environment.get();
-        const routes = {
-            cors: {
-                origin: ['*'],
-                headers: ['Accept', 'Content-Type'],
-                additionalHeaders: ['X-Requested-With']
-            }
-        };
 
-        const server = Hapi.server({ port, host, tls, routes });
+        const server = Hapi.server({
+            host,
+            port,
+            routes: {
+                cors: {
+                    origin: ['*'],
+                    headers: ['Accept', 'Content-Type'],
+                    additionalHeaders: ['X-Requested-With']
+                }
+            },
+            tls: certification.get()
+        });
 
         await server.register(plugins);
         await server.start();
 
         console.log('Server running on %s', server.info.uri);
     } catch (error) {
-        log.error(error as Error, 'init');
+        log.error(error, 'init');
     }
 };
 
