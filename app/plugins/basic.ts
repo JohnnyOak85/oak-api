@@ -1,5 +1,6 @@
 import { Server } from '@hapi/hapi';
-import { buildNotFoundPage } from '../helpers/not-found';
+import { buildMainPage } from '../helpers/basic/main';
+import { buildNotFoundPage } from '../helpers/basic/not-found';
 import wrapper from '../helpers/wrapper';
 
 export default {
@@ -9,7 +10,7 @@ export default {
             {
                 method: 'GET',
                 path: '/',
-                handler: (request, response) => wrapper(request, response, () => 'Hello World!')
+                handler: (request, response) => wrapper(request, response, buildMainPage)
             },
             {
                 method: '*',
