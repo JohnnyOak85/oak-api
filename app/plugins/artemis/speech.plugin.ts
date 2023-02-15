@@ -13,23 +13,22 @@ export default {
         server.route({
             method: 'GET',
             path: '/artemis/greetings',
-            handler: async (request, response) => await wrapper(request.url, response, getGreetings)
+            handler: async (request, response) => await wrapper(request, response, getGreetings)
         });
         server.route({
             method: 'GET',
             path: '/artemis/predictions',
-            handler: async (request, response) =>
-                await wrapper(request.url, response, getPredictions)
+            handler: async (request, response) => await wrapper(request, response, getPredictions)
         });
         server.route({
             method: 'GET',
             path: '/artemis/reactions',
-            handler: async (request, response) => await wrapper(request.url, response, getReactions)
+            handler: async (request, response) => await wrapper(request, response, getReactions)
         });
         server.route({
             method: 'GET',
             path: '/artemis/responses',
-            handler: async (request, response) => await wrapper(request.url, response, getResponses)
+            handler: async (request, response) => await wrapper(request, response, getResponses)
         });
     }
 };

@@ -1,11 +1,11 @@
-import { ResponseToolkit } from '@hapi/hapi';
+import { Request, ResponseToolkit } from '@hapi/hapi';
 
-type Handler = () => Promise<any>;
+type Handler = (args?: any) => Promise<any> | any;
 
-const wrapper = async ({ pathname }: URL, h: ResponseToolkit, handler: Handler) => {
-    console.log('CALL TO ->', pathname);
+const wrapper = async ({ method, payload, url }: Request, h: ResponseToolkit, handler: Handler) => {
+    console.log(`${method} -> ${url.pathname}`);
 
-    return h.response(await handler());
+    return h.response(await handler(payload));
 };
 
 export default wrapper;

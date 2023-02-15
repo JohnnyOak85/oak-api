@@ -8,7 +8,7 @@ export default {
         server.route({
             method: 'GET',
             path: '/home/debts',
-            handler: async (request, response) => await wrapper(request.url, response, getDebts)
+            handler: async (request, response) => await wrapper(request, response, getDebts)
         });
     }
 };

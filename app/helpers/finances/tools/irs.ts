@@ -1,4 +1,4 @@
-import Dictionary from '../../../shared/Dictionary.interface';
+import Dictionary from '../../../interfaces/Dictionary.interface';
 import storage from '../../../storage/storage';
 import { YEARLY_HOLIDAYS } from './constants';
 

@@ -9,12 +9,12 @@ export default {
             {
                 method: 'GET',
                 path: '/',
-                handler: (request, response) => wrapper(request.url, response, 'Hello World!')
+                handler: (request, response) => wrapper(request, response, () => 'Hello World!')
             },
             {
                 method: '*',
                 path: '/{p*}',
-                handler: (request, response) => wrapper(request.url, response, buildNotFoundPage())
+                handler: (request, response) => wrapper(request, response, buildNotFoundPage)
             }
         ]);
     }
