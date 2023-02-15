@@ -1,21 +1,7 @@
 import { calculateTotal } from './calculators';
-import PaymentEntryDoc from './PaymentEntryDoc.interface';
 import storage from '../../storage/storage';
 import logger from '../logger';
-
-type Reoccurrence = 'debt' | 'monthly' | 'sporadic' | 'weekly';
-
-interface PaymentHistory {
-    amount: number;
-    date: number;
-}
-
-export interface ExpenseDoc extends PaymentEntryDoc {
-    lastUpdate: number;
-    payDate: number;
-    reoccurrence: Reoccurrence; // TODO Deal with this.
-    history: PaymentHistory[];
-}
+import { ExpenseDoc } from './interfaces';
 
 const DB_NAME = 'expenses';
 

@@ -1,34 +1,10 @@
-import { ExpenseDoc, getExpenses } from './expenses';
+import { getExpenses } from './expenses';
 import { calculateLiquidWage, calculateTotal } from './calculators';
 import { round } from '../math';
-import { DebtDoc, getDebts } from './debts';
+import { getDebts } from './debts';
 import storage from '../../storage/storage';
 import logger from '../logger';
-import { MaybeDocument } from 'nano';
-
-interface ContributorDoc extends MaybeDocument {
-    financesCredentials: {
-        username: string;
-        password: string;
-    };
-    name: string;
-    savings: number;
-    specialRank?: boolean;
-    wage: number;
-}
-
-interface Contributor {
-    debts: DebtDoc[];
-    expenses: ExpenseDoc[];
-    expensesTotal: number;
-    IRSCuts: number;
-    liquidWage: number;
-    name: string;
-    portionToPay?: number;
-    remainder?: number;
-    SSCut: number;
-    wage: number;
-}
+import { Contributor, ContributorDoc } from './interfaces';
 
 const DB_NAME = 'contributors';
 

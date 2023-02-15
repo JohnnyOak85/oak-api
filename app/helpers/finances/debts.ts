@@ -1,12 +1,8 @@
-import PaymentEntryDoc from './PaymentEntryDoc.interface';
 import storage from '../../storage/storage';
 import logger from '../logger';
+import { DebtDoc } from './interfaces';
 
 const DB_NAME = 'debts';
-
-export interface DebtDoc extends PaymentEntryDoc {
-    remainder: number;
-}
 
 export const getDebts = async (id = 'debt') => {
     try {
