@@ -2,7 +2,7 @@ import { Server } from '@hapi/hapi';
 import { getDebts } from '../../helpers/finances/debts';
 import wrapper from '../../helpers/wrapper';
 
-const debts = {
+export default {
     name: 'debts',
     register: (server: Server) => {
         server.route({
@@ -12,5 +12,3 @@ const debts = {
         });
     }
 };
-
-export default debts;

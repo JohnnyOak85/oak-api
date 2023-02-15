@@ -2,7 +2,7 @@ import { Server } from '@hapi/hapi';
 import { getContributors } from '../../helpers/finances/contributors';
 import wrapper from '../../helpers/wrapper';
 
-const contributors = {
+export default {
     name: 'contributors',
     register: (server: Server) => {
         server.route({
@@ -13,5 +13,3 @@ const contributors = {
         });
     }
 };
-
-export default contributors;

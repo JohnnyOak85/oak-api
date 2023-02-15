@@ -2,7 +2,7 @@ import { Server } from '@hapi/hapi';
 import { buildNotFoundPage } from '../helpers/not-found';
 import wrapper from '../helpers/wrapper';
 
-const basic = {
+export default {
     name: 'basic',
     register: (server: Server) => {
         server.route([
@@ -19,5 +19,3 @@ const basic = {
         ]);
     }
 };
-
-export default basic;
