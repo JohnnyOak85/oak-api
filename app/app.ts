@@ -1,5 +1,5 @@
 import Hapi from '@hapi/hapi';
-import { buildCertification } from './helpers/certification';
+import certification from './tools/certification';
 import environment from './tools/environment';
 import log from './tools/log';
 import plugins from './plugins';
@@ -8,7 +8,7 @@ const init = async () => {
     try {
         environment.start();
 
-        const tls = buildCertification();
+        const tls = certification.get();
         const { host, port } = environment.get();
         const routes = {
             cors: {

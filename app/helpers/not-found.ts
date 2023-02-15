@@ -1,13 +1,13 @@
 import paths from '../../paths';
-import { getFile, getFileList } from './files';
+import files from '../tools/files';
 import math from '../tools/math';
 
 export const buildNotFoundPage = () => {
     try {
         const path = `${paths.resources}/not-found`;
-        const files = getFileList(path);
-        const image = getFile(`${path}/${files[math.random(files.length) - 1]}`).toString('base64');
-        const page = getFile(`${paths.resources}/pages/not-found.html`).toString('utf8');
+        const list = files.getList(path);
+        const image = files.get(`${path}/${list[math.random(list.length) - 1]}`).toString('base64');
+        const page = files.get(`${paths.resources}/pages/not-found.html`).toString('utf8');
 
         return page.replace('§source', image);
     } catch (error) {
