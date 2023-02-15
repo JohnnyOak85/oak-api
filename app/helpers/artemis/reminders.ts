@@ -1,6 +1,6 @@
 import { MaybeDocument } from 'nano';
 import storage from '../../storage/storage';
-import { generateId } from '../generator';
+import identifier from '../../tools/identifier';
 import log from '../../tools/log';
 
 export interface ReminderDoc extends MaybeDocument {
@@ -40,7 +40,7 @@ export const getConfig = async () => {
 export const putReminder = async (reminder: ReminderDoc) => {
     try {
         if (!reminder._id) {
-            reminder._id = `reminder_${generateId()}`;
+            reminder._id = `reminder_${identifier.generate()}`;
         }
 
         const doc = await storage.get<ReminderDoc>(DB_NAME, reminder._id);
