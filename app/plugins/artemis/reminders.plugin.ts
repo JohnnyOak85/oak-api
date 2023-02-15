@@ -1,5 +1,6 @@
 import { Server } from '@hapi/hapi';
-import { getConfig, getReminders, putReminder, ReminderDoc } from '../../helpers/artemis/reminders';
+import { ReminderDoc } from '../../helpers/artemis/interfaces';
+import { getConfig, getReminders, putReminder } from '../../helpers/artemis/reminders';
 import reminderSchema from '../../schemas/reminder.schema';
 
 export default {

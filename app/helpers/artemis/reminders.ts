@@ -1,21 +1,7 @@
-import { MaybeDocument } from 'nano';
 import storage from '../../storage/storage';
 import identifier from '../../tools/identifier';
 import log from '../../tools/log';
-
-export interface ReminderDoc extends MaybeDocument {
-    done?: boolean;
-    event?: string;
-    image?: string;
-    memberId?: string;
-    timestamp: number;
-    type: 'birthday' | 'celebration' | 'release';
-    url?: string;
-}
-
-interface ReminderConfig extends MaybeDocument {
-    birthdays: string[];
-}
+import { ReminderConfig, ReminderDoc } from './interfaces';
 
 const DB_NAME = 'reminders';
 

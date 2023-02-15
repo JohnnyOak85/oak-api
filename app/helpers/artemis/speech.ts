@@ -1,15 +1,6 @@
-import { MaybeDocument } from 'nano';
-import Dictionary from '../../shared/Dictionary.interface';
 import storage from '../../storage/storage';
 import log from '../../tools/log';
-
-interface SpeechDoc extends MaybeDocument {
-    greetings: string[];
-    predictions: string[];
-    reactions: Dictionary<string>;
-    responses: Dictionary<string>;
-    welcomes: string[];
-}
+import { SpeechDoc } from './interfaces';
 
 const DB_NAME = 'artemis';
 
