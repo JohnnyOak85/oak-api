@@ -1,7 +1,7 @@
 import { MaybeDocument } from 'nano';
 import Dictionary from '../../shared/Dictionary.interface';
 import storage from '../../storage/storage';
-import logger from '../logger';
+import log from '../../tools/log';
 
 interface SpeechDoc extends MaybeDocument {
     greetings: string[];
@@ -18,7 +18,7 @@ export const getGreetings = async () => {
         const { greetings } = await storage.get<SpeechDoc>(DB_NAME, 'speech');
         return greetings;
     } catch (error) {
-        logger.logError(error, 'getGreetings');
+        log.error(error, 'getGreetings');
         throw error;
     }
 };
@@ -28,7 +28,7 @@ export const getPredictions = async () => {
         const { predictions } = await storage.get<SpeechDoc>(DB_NAME, 'speech');
         return predictions;
     } catch (error) {
-        logger.logError(error, 'getPredictions');
+        log.error(error, 'getPredictions');
         throw error;
     }
 };
@@ -38,7 +38,7 @@ export const getReactions = async () => {
         const { reactions } = await storage.get<SpeechDoc>(DB_NAME, 'speech');
         return reactions;
     } catch (error) {
-        logger.logError(error, 'getReactions');
+        log.error(error, 'getReactions');
         throw error;
     }
 };
@@ -48,7 +48,7 @@ export const getResponses = async () => {
         const { responses } = await storage.get<SpeechDoc>(DB_NAME, 'speech');
         return responses;
     } catch (error) {
-        logger.logError(error, 'getResponses');
+        log.error(error, 'getResponses');
         throw error;
     }
 };

@@ -1,6 +1,6 @@
 import { createLogger, format, transports } from 'winston';
 import paths from '../../paths';
-import { getTime } from './time';
+import time from './time';
 
 const logger = createLogger({
     level: 'info',
@@ -10,7 +10,6 @@ const logger = createLogger({
 });
 
 export default {
-    logError: ({ message }: any, func: string) =>
-        logger.error(`${getTime()} | Function: ${func} | Message: ${message}`),
-    logInfo: (message: string) => logger.log('info', `${message} at ${getTime()}`)
+    error: ({ message }: any, func: string) =>
+        logger.error(`${time.get()} | Function: ${func} | Message: ${message}`)
 };

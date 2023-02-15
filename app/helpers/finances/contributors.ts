@@ -1,10 +1,10 @@
 import { getExpenses } from './expenses';
 import { calculateLiquidWage, calculateTotal } from './tools/calculators';
-import { round } from '../math';
 import { getDebts } from './debts';
 import storage from '../../storage/storage';
-import logger from '../logger';
 import { Contributor, ContributorDoc } from './interfaces';
+import math from '../../tools/math';
+import log from '../../tools/log';
 
 const DB_NAME = 'contributors';
 
@@ -18,7 +18,7 @@ export const calculateFinances = async (contributor: ContributorDoc): Promise<Co
     return {
         debts: await getDebts(contributor.financesCredentials.username),
         expenses,
-        expensesTotal: round(expensesTotal),
+        expensesTotal: math.round(expensesTotal),
         IRSCuts,
         liquidWage,
         name: contributor.name,
@@ -30,8 +30,8 @@ export const calculateFinances = async (contributor: ContributorDoc): Promise<Co
 const calculatePayments = async (contributor: Contributor, sharedWage: number) => {
     const { expensesTotal } = await getExpenses();
 
-    contributor.portionToPay = round(expensesTotal * (contributor.liquidWage / sharedWage));
-    contributor.remainder = round(
+    contributor.portionToPay = math.round(expensesTotal * (contributor.liquidWage / sharedWage));
+    contributor.remainder = math.round(
         contributor.liquidWage -
             (contributor.portionToPay +
                 calculateTotal(contributor.expenses.map(expense => expense.amount)))
@@ -54,7 +54,7 @@ export const getContributors = async () => {
             contributors.map(async contributor => await calculatePayments(contributor, sharedWage))
         );
     } catch (error) {
-        logger.logError(error, 'getContributors');
+        log.error(error, 'getContributors');
         throw error;
     }
 };

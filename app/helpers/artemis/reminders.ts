@@ -1,7 +1,7 @@
 import { MaybeDocument } from 'nano';
 import storage from '../../storage/storage';
 import { generateId } from '../generator';
-import logger from '../logger';
+import log from '../../tools/log';
 
 export interface ReminderDoc extends MaybeDocument {
     done?: boolean;
@@ -23,7 +23,7 @@ export const getReminders = async () => {
     try {
         return await storage.getAll<ReminderDoc>(DB_NAME, 'reminder');
     } catch (error) {
-        logger.logError(error, 'getReminders');
+        log.error(error, 'getReminders');
         throw error;
     }
 };
@@ -32,7 +32,7 @@ export const getConfig = async () => {
     try {
         return await storage.get<ReminderConfig>(DB_NAME, 'config');
     } catch (error) {
-        logger.logError(error, 'getConfig');
+        log.error(error, 'getConfig');
         throw error;
     }
 };
@@ -51,7 +51,7 @@ export const putReminder = async (reminder: ReminderDoc) => {
             return await storage.put<ReminderDoc>(DB_NAME, reminder);
         }
 
-        logger.logError(error, 'putReminder');
+        log.error(error, 'putReminder');
         throw error;
     }
 };

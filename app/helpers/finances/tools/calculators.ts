@@ -1,4 +1,4 @@
-import { round } from '../../math';
+import math from '../../../tools/math';
 import { YEARLY_HOLIDAYS } from './constants';
 import { getTotalIRSCut, getPartialIRSCut } from './irs';
 import { getSSCut } from './social_security';
@@ -9,7 +9,7 @@ export const calculateTotal = (entries: number[]) =>
     entries.reduce((accumulated, entry) => accumulated + entry, 0);
 
 export const calculateLiquidWage = async (grossWage: number, applyPreviousRank: boolean) => {
-    const totalHolidayPay = round(grossWage / TOTAL_MONTHS) * YEARLY_HOLIDAYS;
+    const totalHolidayPay = math.round(grossWage / TOTAL_MONTHS) * YEARLY_HOLIDAYS;
     const totalPay = grossWage + totalHolidayPay;
 
     const IRSCut = await getTotalIRSCut(grossWage, applyPreviousRank);

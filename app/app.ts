@@ -1,15 +1,15 @@
 import Hapi from '@hapi/hapi';
 import { buildCertification } from './helpers/certification';
-import { getEnvironment, startEnvironment } from './helpers/environment';
-import logger from './helpers/logger';
+import environment from './tools/environment';
+import log from './tools/log';
 import plugins from './plugins';
 
 const init = async () => {
     try {
-        startEnvironment();
+        environment.start();
 
         const tls = buildCertification();
-        const { host, port } = getEnvironment();
+        const { host, port } = environment.get();
         const routes = {
             cors: {
                 origin: ['*'],
@@ -25,7 +25,7 @@ const init = async () => {
 
         console.log('Server running on %s', server.info.uri);
     } catch (error) {
-        logger.logError(error as Error, 'init');
+        log.error(error as Error, 'init');
     }
 };
 
