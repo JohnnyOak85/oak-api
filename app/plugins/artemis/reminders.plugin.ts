@@ -1,6 +1,7 @@
 import { Server } from '@hapi/hapi';
 import { ReminderDoc } from '../../helpers/artemis/interfaces';
 import { getConfig, getReminders, putReminder } from '../../helpers/artemis/reminders';
+import wrapper from '../../helpers/wrapper';
 import reminderSchema from '../../schemas/reminder.schema';
 
 export default {
@@ -9,7 +10,7 @@ export default {
         server.route({
             method: 'GET',
             path: '/artemis/reminders',
-            handler: async (request, h) => h.response(await getReminders())
+            handler: async (request, response) => await wrapper(request.url, response, getReminders)
         });
         server.route({
             method: 'PUT',
@@ -25,7 +26,7 @@ export default {
         server.route({
             method: 'GET',
             path: '/artemis/reminders/config',
-            handler: async (request, h) => h.response(await getConfig())
+            handler: async (request, response) => await wrapper(request.url, response, getConfig)
         });
     }
 };

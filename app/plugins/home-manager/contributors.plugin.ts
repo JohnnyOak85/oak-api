@@ -9,7 +9,7 @@ export default {
             method: 'GET',
             path: '/home/contributors',
             handler: async (request, response) =>
-                wrapper(request.url, response, await getContributors())
+                await wrapper(request.url, response, getContributors)
         });
     }
 };

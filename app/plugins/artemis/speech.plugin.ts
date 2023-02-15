@@ -5,6 +5,7 @@ import {
     getReactions,
     getResponses
 } from '../../helpers/artemis/speech';
+import wrapper from '../../helpers/wrapper';
 
 export default {
     name: 'speech',
@@ -12,22 +13,23 @@ export default {
         server.route({
             method: 'GET',
             path: '/artemis/greetings',
-            handler: async (request, h) => h.response(await getGreetings())
+            handler: async (request, response) => await wrapper(request.url, response, getGreetings)
         });
         server.route({
             method: 'GET',
             path: '/artemis/predictions',
-            handler: async (request, h) => h.response(await getPredictions())
+            handler: async (request, response) =>
+                await wrapper(request.url, response, getPredictions)
         });
         server.route({
             method: 'GET',
             path: '/artemis/reactions',
-            handler: async (request, h) => h.response(await getReactions())
+            handler: async (request, response) => await wrapper(request.url, response, getReactions)
         });
         server.route({
             method: 'GET',
             path: '/artemis/responses',
-            handler: async (request, h) => h.response(await getResponses())
+            handler: async (request, response) => await wrapper(request.url, response, getResponses)
         });
     }
 };
