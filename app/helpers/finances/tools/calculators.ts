@@ -1,7 +1,9 @@
-import { round } from '../math';
-import { TOTAL_MONTHS, YEARLY_HOLIDAYS } from './constants';
+import { round } from '../../math';
+import { YEARLY_HOLIDAYS } from './constants';
 import { getTotalIRSCut, getPartialIRSCut } from './irs';
 import { getSSCut } from './social_security';
+
+const TOTAL_MONTHS = 12;
 
 export const calculateTotal = (entries: number[]) =>
     entries.reduce((accumulated, entry) => accumulated + entry, 0);

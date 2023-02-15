@@ -1,4 +1,4 @@
-import { calculateTotal } from './calculators';
+import { calculateTotal } from './tools/calculators';
 import storage from '../../storage/storage';
 import logger from '../logger';
 import { ExpenseDoc } from './interfaces';

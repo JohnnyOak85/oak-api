@@ -1,5 +1,5 @@
-import Dictionary from '../../shared/Dictionary.interface';
-import storage from '../../storage/storage';
+import Dictionary from '../../../shared/Dictionary.interface';
+import storage from '../../../storage/storage';
 import { YEARLY_HOLIDAYS } from './constants';
 
 type IRSRanks = Dictionary<number>;

@@ -1,5 +1,5 @@
 import { getExpenses } from './expenses';
-import { calculateLiquidWage, calculateTotal } from './calculators';
+import { calculateLiquidWage, calculateTotal } from './tools/calculators';
 import { round } from '../math';
 import { getDebts } from './debts';
 import storage from '../../storage/storage';
