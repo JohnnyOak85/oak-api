@@ -1,8 +1,7 @@
 import storage from '../../storage/storage';
 import log from '../../tools/log';
 import { SpeechDoc } from './interfaces';
-
-const DB_NAME = 'artemis';
+import DB_NAME from './shared/DB_NAME';
 
 export const getGreetings = async () => {
     try {
