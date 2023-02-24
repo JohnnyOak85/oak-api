@@ -6,7 +6,7 @@ export default {
     register: (server: Server) => {
         server.route({
             method: 'GET',
-            path: '/home/contributors',
+            path: '/finances/contributors',
             handler: async (request, h) => h.response(await getContributors())
         });
     }
