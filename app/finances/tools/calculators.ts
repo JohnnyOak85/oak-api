@@ -1,4 +1,4 @@
-import math from '../../../tools/math';
+import math from '../../tools/math';
 import { YEARLY_HOLIDAYS } from './constants';
 import { getTotalIRSCut, getPartialIRSCut } from './irs';
 import { getSSCut } from './social_security';

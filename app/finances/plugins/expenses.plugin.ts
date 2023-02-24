@@ -1,6 +1,5 @@
 import { Server } from '@hapi/hapi';
-import { getExpenses } from '../../helpers/finances/expenses';
-import wrapper from '../../helpers/wrapper';
+import { getExpenses } from '../helpers/expenses';
 
 export default {
     name: 'expenses',
@@ -8,7 +7,7 @@ export default {
         server.route({
             method: 'GET',
             path: '/home/expenses',
-            handler: async (request, response) => await wrapper(request, response, getExpenses)
+            handler: async (request, h) => h.response(await getExpenses())
         });
     }
 };

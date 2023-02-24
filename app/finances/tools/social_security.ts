@@ -1,5 +1,5 @@
 import { YEARLY_HOLIDAYS } from './constants';
-import math from '../../../tools/math';
+import math from '../../tools/math';
 
 const SOCIAL_SECURITY_PERCENTAGE = 0.11;
 

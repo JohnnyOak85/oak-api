@@ -1,5 +1,5 @@
-import basic from './basic.plugin';
 import artemis from '../artemis';
-import homeManager from './home-manager';
+import basic from '../basic/plugins/basic.plugin';
+import finances from '../finances';
 
-export default [basic, ...artemis, ...homeManager];
+export default [...artemis, basic, ...finances];

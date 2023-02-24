@@ -1,7 +1,7 @@
-import { calculateTotal } from './tools/calculators';
+import { calculateTotal } from '../tools/calculators';
 import storage from '../../storage/storage';
-import log from '../../tools/log';
-import { ExpenseDoc } from './interfaces';
+import { ExpenseDoc } from '../interfaces';
+import ErrorHandler from '../../tools/error';
 
 const DB_NAME = 'expenses';
 
@@ -14,7 +14,6 @@ export const getExpenses = async (id = 'expense') => {
             expensesTotal: calculateTotal(expenses.map(expense => expense.amount))
         };
     } catch (error) {
-        log.error(error, 'getExpenses');
-        throw error;
+        throw ErrorHandler.wrap(error, 'getExpenses');
     }
 };

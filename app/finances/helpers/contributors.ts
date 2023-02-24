@@ -1,14 +1,14 @@
 import { getExpenses } from './expenses';
-import { calculateLiquidWage, calculateTotal } from './tools/calculators';
+import { calculateLiquidWage, calculateTotal } from '../tools/calculators';
 import { getDebts } from './debts';
 import storage from '../../storage/storage';
-import { Contributor, ContributorDoc } from './interfaces';
+import { Contributor, ContributorDoc } from '../interfaces';
 import math from '../../tools/math';
-import log from '../../tools/log';
+import ErrorHandler from '../../tools/error';
 
 const DB_NAME = 'contributors';
 
-export const calculateFinances = async (contributor: ContributorDoc): Promise<Contributor> => {
+const calculateFinances = async (contributor: ContributorDoc): Promise<Contributor> => {
     const { IRSCuts, liquidWage, SSCut } = await calculateLiquidWage(
         contributor.wage,
         !!contributor.specialRank
@@ -54,7 +54,6 @@ export const getContributors = async () => {
             contributors.map(async contributor => await calculatePayments(contributor, sharedWage))
         );
     } catch (error) {
-        log.error(error, 'getContributors');
-        throw error;
+        throw ErrorHandler.wrap(error, 'getContributors');
     }
 };
