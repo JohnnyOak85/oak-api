@@ -1,4 +1,4 @@
-export class Collector<T> {
+export default class Collector<T> {
     private collection: Map<string, T>;
 
     constructor() {

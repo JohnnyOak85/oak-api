@@ -1,15 +1,13 @@
 import { getExpenses } from './expenses';
-import { calculateLiquidWage, calculateTotal } from '../tools/calculators';
+import Calculator from '../tools/calculators';
 import { getDebts } from './debts';
-import storage from '../../storage/storage';
 import { Contributor, ContributorDoc } from '../interfaces';
-import math from '../../tools/math';
-import ErrorHandler from '../../tools/error';
+import { ErrorHandler, Storage } from '../../tools';
 
 const DB_NAME = 'contributors';
 
 const calculateFinances = async (contributor: ContributorDoc): Promise<Contributor> => {
-    const { IRSCuts, liquidWage, SSCut } = await calculateLiquidWage(
+    const { IRSCuts, liquidWage, SSCut } = await Calculator.liquidWage(
         contributor.wage,
         !!contributor.specialRank
     );
@@ -18,7 +16,7 @@ const calculateFinances = async (contributor: ContributorDoc): Promise<Contribut
     return {
         debts: await getDebts(contributor.financesCredentials.username),
         expenses,
-        expensesTotal: math.round(expensesTotal),
+        expensesTotal: Calculator.round(expensesTotal),
         IRSCuts,
         liquidWage,
         name: contributor.name,
@@ -30,11 +28,13 @@ const calculateFinances = async (contributor: ContributorDoc): Promise<Contribut
 const calculatePayments = async (contributor: Contributor, sharedWage: number) => {
     const { expensesTotal } = await getExpenses();
 
-    contributor.portionToPay = math.round(expensesTotal * (contributor.liquidWage / sharedWage));
-    contributor.remainder = math.round(
+    contributor.portionToPay = Calculator.round(
+        expensesTotal * (contributor.liquidWage / sharedWage)
+    );
+    contributor.remainder = Calculator.round(
         contributor.liquidWage -
             (contributor.portionToPay +
-                calculateTotal(contributor.expenses.map(expense => expense.amount)))
+                Calculator.total(contributor.expenses.map(expense => expense.amount)))
     );
 
     return contributor;
@@ -42,13 +42,15 @@ const calculatePayments = async (contributor: Contributor, sharedWage: number) =
 
 export const getContributors = async () => {
     try {
-        const contributorDocs = await storage.getAll<ContributorDoc>(DB_NAME, 'contributor');
+        const contributorDocs = await Storage.getAll<ContributorDoc>(DB_NAME, 'contributor');
 
         const contributors = await Promise.all(
             contributorDocs.map(async contributor => await calculateFinances(contributor))
         );
 
-        const sharedWage = calculateTotal(contributors.map(contributor => contributor.liquidWage));
+        const sharedWage = Calculator.total(
+            contributors.map(contributor => contributor.liquidWage)
+        );
 
         return await Promise.all(
             contributors.map(async contributor => await calculatePayments(contributor, sharedWage))

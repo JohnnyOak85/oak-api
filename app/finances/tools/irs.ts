@@ -1,5 +1,5 @@
 import Dictionary from '../../interfaces/Dictionary.interface';
-import storage from '../../storage/storage';
+import { Storage } from '../../tools';
 import { YEARLY_HOLIDAYS } from './constants';
 
 type IRSRanks = Dictionary<number>;
@@ -7,7 +7,7 @@ type IRSRanks = Dictionary<number>;
 const getIRSRetentionRanks = (ranks: IRSRanks) => Object.keys(ranks).map(key => Number(key));
 
 const findIRSPercentage = async (wage: number, applyPreviousRank = false) => {
-    const doc = await storage.get<IRSRanks>('finances', 'irs_retention');
+    const doc = await Storage.get<IRSRanks>('finances', 'irs_retention');
     const ranks = getIRSRetentionRanks(doc);
 
     let percentage = 0;

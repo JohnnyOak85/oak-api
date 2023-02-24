@@ -1,10 +1,8 @@
-import paths from '../../../paths';
-import files from '../../tools/files';
-import ErrorHandler from '../../tools/error';
+import { ErrorHandler, FileHandler, PathHandler } from '../../tools';
 
 export const getLogFile = () => {
     try {
-        return files.get(`${paths.logs}/log.txt`).toString('utf8');
+        return FileHandler.get(`${PathHandler.logs}/log.txt`).toString('utf8');
     } catch (error) {
         throw ErrorHandler.wrap(error, 'getLogFile');
     }

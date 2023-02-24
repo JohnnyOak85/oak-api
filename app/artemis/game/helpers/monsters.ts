@@ -1,9 +1,8 @@
-import storage from '../../../storage/storage';
-import ErrorHandler from '../../../tools/error';
+import { ErrorHandler, Storage } from '../../../tools';
 import MonsterConfig from '../interfaces/MonsterConfigDoc.interface';
 import DB_NAME from '../shared/DB_NAME';
 
-const getMonsterConfig = () => storage.get<MonsterConfig>(DB_NAME, 'monster_config');
+const getMonsterConfig = () => Storage.get<MonsterConfig>(DB_NAME, 'monster_config');
 
 export const getMonsterRanks = async () => {
     try {

@@ -1,9 +1,8 @@
-import storage from '../../../storage/storage';
-import ErrorHandler from '../../../tools/error';
+import { ErrorHandler, Storage } from '../../../tools';
 import SpeechDoc from '../interfaces/SpeechDoc.interface';
 import DB_NAME from '../shared/DB_NAME';
 
-const getSpeechDoc = () => storage.get<SpeechDoc>(DB_NAME, 'speech');
+const getSpeechDoc = () => Storage.get<SpeechDoc>(DB_NAME, 'speech');
 
 export const getGreetings = async () => {
     try {

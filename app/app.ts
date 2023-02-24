@@ -1,14 +1,12 @@
 import Hapi from '@hapi/hapi';
-import certification from './tools/certification';
-import environment from './tools/environment';
-import log from './tools/log';
+import { Certification, Environment, Logger } from './tools';
 import plugins from './plugins';
 
 const init = async () => {
     try {
-        environment.start();
+        Environment.start();
 
-        const { host, port } = environment.get();
+        const { host, port } = Environment.get();
 
         const server = Hapi.server({
             host,
@@ -20,7 +18,7 @@ const init = async () => {
                     additionalHeaders: ['X-Requested-With']
                 }
             },
-            tls: certification.get()
+            tls: Certification.get()
         });
 
         await server.register(plugins);
@@ -28,7 +26,7 @@ const init = async () => {
 
         console.log('Server running on %s', server.info.uri);
     } catch (error) {
-        log.error(error, 'init');
+        Logger.error(error, 'init');
     }
 };
 

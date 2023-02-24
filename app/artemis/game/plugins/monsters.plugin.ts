@@ -1,5 +1,5 @@
 import { Server } from '@hapi/hapi';
-import { getMonsterAttributes, getMonsterRanks } from '../helpers/monters';
+import { getMonsterAttributes, getMonsterRanks } from '../helpers/monsters';
 
 export default {
     name: 'game-monsters',

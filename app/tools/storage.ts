@@ -1,4 +1,4 @@
-import { Collector } from './collector';
+import Collector from './collector';
 import Database from './database';
 
 const databases: Collector<Database<any>> = new Collector();
