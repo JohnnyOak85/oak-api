@@ -1,7 +1,7 @@
 import { Server } from '@hapi/hapi';
-import { getConfig, getReminders, putReminder } from '../../helpers/artemis/reminders';
-import wrapper from '../../helpers/wrapper';
-import reminderSchema from '../../schemas/reminder.schema';
+import { getConfig, getReminders, putReminder } from '../helpers/reminders';
+import ReminderDoc from '../interfaces/ReminderDoc.interface';
+import reminderSchema from '../schemas/reminder.schema';
 
 export default {
     name: 'reminders',
@@ -9,12 +9,13 @@ export default {
         server.route({
             method: 'GET',
             path: '/artemis/reminders',
-            handler: async (request, response) => await wrapper(request, response, getReminders)
+            handler: async (request, h) => h.response(await getReminders())
         });
         server.route({
             method: 'PUT',
             path: '/artemis/reminders',
-            handler: async (request, response) => await wrapper(request, response, putReminder),
+            handler: async (request, h) =>
+                h.response(await putReminder(request.payload as ReminderDoc)),
             options: {
                 validate: {
                     payload: reminderSchema
@@ -24,7 +25,7 @@ export default {
         server.route({
             method: 'GET',
             path: '/artemis/reminders/config',
-            handler: async (request, response) => await wrapper(request, response, getConfig)
+            handler: async (request, h) => h.response(await getConfig())
         });
     }
 };

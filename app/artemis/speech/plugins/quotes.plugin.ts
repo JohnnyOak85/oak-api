@@ -1,6 +1,5 @@
 import { Server } from '@hapi/hapi';
-import { getQuotes } from '../../helpers/artemis/quotes';
-import wrapper from '../../helpers/wrapper';
+import { getQuotes } from '../helpers/quotes';
 
 export default {
     name: 'quotes',
@@ -8,7 +7,7 @@ export default {
         server.route({
             method: 'GET',
             path: '/artemis/quotes',
-            handler: async (request, response) => await wrapper(request, response, getQuotes)
+            handler: async (request, h) => h.response(await getQuotes())
         });
     }
 };

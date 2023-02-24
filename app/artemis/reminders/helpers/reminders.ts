@@ -1,7 +1,8 @@
-import storage from '../../storage/storage';
-import identifier from '../../tools/identifier';
-import log from '../../tools/log';
-import { ReminderConfig, ReminderDoc } from './interfaces';
+import storage from '../../../storage/storage';
+import identifier from '../../../tools/identifier';
+import ReminderConfig from '../interfaces/ReminderConfig.interface';
+import ReminderDoc from '../interfaces/ReminderDoc.interface';
+import ErrorHandler from '../../../tools/error';
 
 const DB_NAME = 'reminders';
 
@@ -9,8 +10,7 @@ export const getReminders = async () => {
     try {
         return await storage.getAll<ReminderDoc>(DB_NAME, 'reminder');
     } catch (error) {
-        log.error(error, 'getReminders');
-        throw error;
+        throw ErrorHandler.wrap(error, 'getReminders');
     }
 };
 
@@ -18,8 +18,7 @@ export const getConfig = async () => {
     try {
         return await storage.get<ReminderConfig>(DB_NAME, 'config');
     } catch (error) {
-        log.error(error, 'getConfig');
-        throw error;
+        throw ErrorHandler.wrap(error, 'getConfig');
     }
 };
 
@@ -37,7 +36,6 @@ export const putReminder = async (reminder: ReminderDoc) => {
             return await storage.put<ReminderDoc>(DB_NAME, reminder);
         }
 
-        log.error(error, 'putReminder');
-        throw error;
+        throw ErrorHandler.wrap(error, 'putReminder');
     }
 };

@@ -1,6 +1,5 @@
 import { Server } from '@hapi/hapi';
-import { getBlocks, getDecorators } from '../../helpers/artemis/story';
-import wrapper from '../../helpers/wrapper';
+import { getBlocks, getDecorators } from '../helpers/story';
 
 export default {
     name: 'story',
@@ -8,12 +7,12 @@ export default {
         server.route({
             method: 'GET',
             path: '/artemis/story/blocks',
-            handler: async (request, response) => await wrapper(request, response, getBlocks)
+            handler: async (request, h) => h.response(await getBlocks())
         });
         server.route({
             method: 'GET',
             path: '/artemis/story/decorators',
-            handler: async (request, response) => await wrapper(request, response, getDecorators)
+            handler: async (request, h) => h.response(await getDecorators())
         });
     }
 };

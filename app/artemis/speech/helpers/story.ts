@@ -1,15 +1,14 @@
-import storage from '../../storage/storage';
-import log from '../../tools/log';
-import StoryDoc from './interfaces/StoryDoc.interface';
-import DB_NAME from './shared/DB_NAME';
+import storage from '../../../storage/storage';
+import StoryDoc from '../interfaces/StoryDoc.interface';
+import DB_NAME from '../shared/DB_NAME';
+import ErrorHandler from '../../../tools/error';
 
 export const getBlocks = async () => {
     try {
         const { blocks } = await storage.get<StoryDoc>(DB_NAME, 'story');
         return blocks;
     } catch (error) {
-        log.error(error, 'getBlocks');
-        throw error;
+        throw ErrorHandler.wrap(error, 'getBlocks');
     }
 };
 
@@ -18,7 +17,6 @@ export const getDecorators = async () => {
         const { decorators } = await storage.get<StoryDoc>(DB_NAME, 'story');
         return decorators;
     } catch (error) {
-        log.error(error, 'getDecorators');
-        throw error;
+        throw ErrorHandler.wrap(error, 'getDecorators');
     }
 };
