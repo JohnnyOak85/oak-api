@@ -1,4 +1,4 @@
-import basic from './basic';
+import basic from './basic.plugin';
 import artemis from './artemis';
 import homeManager from './home-manager';
 

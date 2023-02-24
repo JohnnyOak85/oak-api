@@ -1,7 +1,7 @@
 import { Server } from '@hapi/hapi';
+import { getLogFile } from '../helpers/basic/log';
 import { buildMainPage } from '../helpers/basic/main';
 import { buildNotFoundPage } from '../helpers/basic/not-found';
-import wrapper from '../helpers/wrapper';
 
 export default {
     name: 'basic',
@@ -10,12 +10,17 @@ export default {
             {
                 method: 'GET',
                 path: '/',
-                handler: (request, response) => wrapper(request, response, buildMainPage)
+                handler: (request, h) => h.response(buildMainPage())
             },
             {
                 method: '*',
                 path: '/{p*}',
-                handler: (request, response) => wrapper(request, response, buildNotFoundPage)
+                handler: (request, h) => h.response(buildNotFoundPage())
+            },
+            {
+                method: 'GET',
+                path: '/log',
+                handler: (request, h) => h.response(getLogFile())
             }
         ]);
     }
