@@ -7,7 +7,9 @@ import files from './files';
 import identifier from './identifier';
 import log from './log';
 import math from './math';
+import cache from './cache';
 
+export const CacheHandler = cache;
 export const Calculator = math;
 export const Certification = certification;
 export const Environment = environment;
