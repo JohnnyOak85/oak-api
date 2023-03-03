@@ -1,5 +1,5 @@
 import Hapi from '@hapi/hapi';
-import { Certification, Environment, Logger } from './tools';
+import { Certification, Environment, ErrorHandler, Logger } from './tools';
 import plugins from './plugins';
 
 const init = async () => {
@@ -26,7 +26,7 @@ const init = async () => {
 
         console.log('Server running on %s', server.info.uri);
     } catch (error) {
-        Logger.error(error, 'init');
+        throw ErrorHandler.wrap(error, 'init');
     }
 };
 

@@ -14,6 +14,6 @@ export default {
             throw notFound(error);
         }
 
-        return boomify(error);
+        return boomify(error, { message: error.message });
     }
 };
