@@ -1,4 +1,6 @@
 import areas from './areas.plugin';
-import monsters from './monsters.plugin';
+import player from './player.plugin';
+import ranks from './ranks.plugin';
+import stats from './stats.plugin';
 
-export default [areas, monsters];
+export default [areas, player, ranks, stats];
