@@ -2,7 +2,7 @@ import { getExpenses } from './expenses';
 import Calculator from '../tools/calculators';
 import { getDebts } from './debts';
 import { Contributor, ContributorDoc } from '../interfaces';
-import { ErrorHandler, Storage } from '../../tools';
+import { ErrorHandler, StorageHandler } from '../../tools';
 
 const DB_NAME = 'contributors';
 
@@ -42,7 +42,7 @@ const calculatePayments = async (contributor: Contributor, sharedWage: number) =
 
 export const getContributors = async () => {
     try {
-        const contributorDocs = await Storage.getAll<ContributorDoc>(DB_NAME, 'contributor');
+        const contributorDocs = await StorageHandler.getAll<ContributorDoc>(DB_NAME, 'contributor');
 
         const contributors = await Promise.all(
             contributorDocs.map(async contributor => await calculateFinances(contributor))

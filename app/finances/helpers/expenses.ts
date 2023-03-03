@@ -1,12 +1,12 @@
 import Calculator from '../tools/calculators';
 import { ExpenseDoc } from '../interfaces';
-import { ErrorHandler, Storage } from '../../tools';
+import { ErrorHandler, StorageHandler } from '../../tools';
 
 const DB_NAME = 'expenses';
 
 export const getExpenses = async (id = 'expense') => {
     try {
-        const expenses = await Storage.getAll<ExpenseDoc>(DB_NAME, id);
+        const expenses = await StorageHandler.getAll<ExpenseDoc>(DB_NAME, id);
 
         return {
             expenses,

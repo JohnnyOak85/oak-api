@@ -17,5 +17,5 @@ export const ErrorHandler = error;
 export const FileHandler = files;
 export const Identifier = identifier;
 export const Logger = log;
-export const Storage = storage;
+export const StorageHandler = storage;
 export const PathHandler = paths;
