@@ -1,17 +1,42 @@
-import { ErrorHandler, Storage } from '../../../tools';
+import { CacheHandler, ErrorHandler, StorageHandler } from '../../../tools';
 import AreaDoc from '../interfaces/AreasDoc.interface';
 import DB_NAME from '../shared/DB_NAME';
 
-export const getAreas = async (area: string) => {
+export const getCurrentArea = async () => {
     try {
-        const areas = await Storage.get<AreaDoc>(DB_NAME, 'areas');
+        const currentArea = await CacheHandler.get('current-area');
 
-        if (!areas[area]) {
-            throw ErrorHandler.notFound('Area does not exist');
+        if (!currentArea) {
+            throw ErrorHandler.notFound('Area is not set');
         }
 
-        return areas[area];
+        return currentArea;
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getAreas');
+        throw ErrorHandler.wrap(error, 'getCurrentArea');
+    }
+};
+
+export const setCurrentArea = async (currentArea: string) => {
+    try {
+        await CacheHandler.put('current-area', currentArea);
+
+        return 'true';
+    } catch (error) {
+        throw ErrorHandler.wrap(error, 'setCurrentArea');
+    }
+};
+
+export const getAreaData = async () => {
+    try {
+        const areas = await StorageHandler.get<AreaDoc>(DB_NAME, 'areas');
+        const currentArea = await getCurrentArea();
+
+        if (!areas[currentArea]) {
+            throw ErrorHandler.notFound('Area is not set');
+        }
+
+        return areas[currentArea];
+    } catch (error) {
+        throw ErrorHandler.wrap(error, 'getAreaData');
     }
 };

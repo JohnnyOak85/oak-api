@@ -1,7 +1,6 @@
-import Dictionary from '../../../../interfaces/Dictionary.interface';
+import Dictionary from '../../../interfaces/Dictionary.interface';
 
-type AreaRank = Dictionary<number>;
-type Area = AreaRank[];
+type Area = Dictionary<string>[];
 type AreaDoc = Dictionary<Area>;
 
 export default AreaDoc;
