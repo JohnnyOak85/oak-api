@@ -24,6 +24,16 @@ export const getBaseStats = async () => {
     }
 };
 
+export const getBattleStats = async () => {
+    try {
+        const { battle } = await getStats();
+
+        return battle;
+    } catch (error) {
+        throw ErrorHandler.wrap(error, 'getStats');
+    }
+};
+
 export const getHealthStats = async () => {
     try {
         const { health } = await getStats();

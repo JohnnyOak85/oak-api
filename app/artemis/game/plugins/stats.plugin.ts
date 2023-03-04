@@ -1,6 +1,7 @@
 import { Server } from '@hapi/hapi';
 import {
     getBaseStats,
+    getBattleStats,
     getHealthStats,
     getLevelStats,
     getLuckStats,
@@ -14,6 +15,11 @@ export default {
             method: 'GET',
             path: '/artemis/game/stats/base',
             handler: async (request, h) => h.response(await getBaseStats())
+        });
+        server.route({
+            method: 'GET',
+            path: '/artemis/game/stats/battle',
+            handler: async (request, h) => h.response(await getBattleStats())
         });
         server.route({
             method: 'GET',
