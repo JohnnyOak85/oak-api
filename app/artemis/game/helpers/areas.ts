@@ -40,3 +40,26 @@ export const getAreaData = async () => {
         throw ErrorHandler.wrap(error, 'getAreaData');
     }
 };
+
+export const getAreaName = async () => {
+    try {
+        const currentArea = await getCurrentArea();
+
+        return currentArea
+            .split('_')
+            .map(word => `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
+            .join(' ');
+    } catch (error) {
+        throw ErrorHandler.wrap(error, 'getAreaName');
+    }
+};
+
+export const getAreaMonsters = async () => {
+    try {
+        const currentArea = await getAreaData();
+
+        return currentArea.map(rank => Object.keys(rank)).flat();
+    } catch (error) {
+        throw ErrorHandler.wrap(error, 'getAreaMonsters');
+    }
+};
