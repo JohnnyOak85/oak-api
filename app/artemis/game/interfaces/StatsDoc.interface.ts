@@ -8,7 +8,6 @@ type StatsDoc = {
         doubleChance: number;
         missChance: number;
     };
-    defaultName: string;
     health: {
         base: number;
         cap: number;
@@ -21,6 +20,7 @@ type StatsDoc = {
         minDecrement: number;
         max: number;
         maxMultiplier: number;
+        multiplier: number;
     };
     luck: {
         cap: number;
