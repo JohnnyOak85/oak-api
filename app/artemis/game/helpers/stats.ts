@@ -10,6 +10,16 @@ const getStats = async () => {
     }
 };
 
+export const getAttributeStats = async () => {
+    try {
+        const { attributes } = await getStats();
+
+        return attributes;
+    } catch (error) {
+        throw ErrorHandler.wrap(error, 'getAttributeStats');
+    }
+};
+
 export const getBaseStats = async () => {
     try {
         const { health, stat } = await getStats();
@@ -20,7 +30,7 @@ export const getBaseStats = async () => {
             health: health.base
         };
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getStats');
+        throw ErrorHandler.wrap(error, 'getBaseStats');
     }
 };
 
@@ -30,7 +40,7 @@ export const getBattleStats = async () => {
 
         return battle;
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getStats');
+        throw ErrorHandler.wrap(error, 'getBattleStats');
     }
 };
 
@@ -40,7 +50,7 @@ export const getHealthStats = async () => {
 
         return health;
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getStats');
+        throw ErrorHandler.wrap(error, 'getHealthStats');
     }
 };
 
@@ -50,7 +60,7 @@ export const getLevelStats = async () => {
 
         return level;
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getStats');
+        throw ErrorHandler.wrap(error, 'getLevelStats');
     }
 };
 
@@ -60,7 +70,7 @@ export const getLuckStats = async () => {
 
         return luck;
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getStats');
+        throw ErrorHandler.wrap(error, 'getLuckStats');
     }
 };
 
@@ -70,6 +80,20 @@ export const getMainStats = async () => {
 
         return stat;
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getStats');
+        throw ErrorHandler.wrap(error, 'getMainStats');
+    }
+};
+
+export const getStatCaps = async () => {
+    try {
+        const { health, luck, stat } = await getStats();
+
+        return {
+            healthCap: health.cap,
+            luckCap: luck.cap,
+            statCap: stat.cap
+        };
+    } catch (error) {
+        throw ErrorHandler.wrap(error, 'getStatCaps');
     }
 };
