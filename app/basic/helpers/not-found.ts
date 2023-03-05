@@ -1,5 +1,7 @@
 import { Calculator, ErrorHandler, FileHandler, PathHandler } from '../../tools';
 
+// TODO Unused, to be used in frontend
+
 export const buildNotFoundPage = () => {
     try {
         const path = `${PathHandler.resources}/not-found`;

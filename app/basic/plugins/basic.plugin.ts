@@ -1,7 +1,7 @@
 import { Server } from '@hapi/hapi';
+import { ErrorHandler } from '../../tools';
 import { getLogFile } from '../helpers/log';
 import { buildMainPage } from '../helpers/main';
-import { buildNotFoundPage } from '../helpers/not-found';
 
 export default {
     name: 'basic',
@@ -15,7 +15,7 @@ export default {
             {
                 method: '*',
                 path: '/{p*}',
-                handler: (request, h) => h.response(buildNotFoundPage())
+                handler: (request, h) => ErrorHandler.notFound()
             },
             {
                 method: 'GET',
