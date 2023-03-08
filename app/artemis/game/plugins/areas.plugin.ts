@@ -6,6 +6,7 @@ import {
     getCurrentArea,
     setCurrentArea
 } from '../helpers/areas';
+import areaSchema from '../schemas/area.schema';
 
 export default {
     name: 'game-areas',
@@ -34,7 +35,12 @@ export default {
             method: 'PUT',
             path: '/artemis/game/area',
             handler: async (request, h) =>
-                h.response(await setCurrentArea(request.query.currentArea))
+                h.response(await setCurrentArea(request.query.currentArea)),
+            options: {
+                validate: {
+                    query: areaSchema
+                }
+            }
         });
     }
 };
