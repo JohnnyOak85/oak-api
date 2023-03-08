@@ -1,10 +1,14 @@
-import { boomify, notAcceptable, notFound } from '@hapi/boom';
+import { boomify, isBoom, notAcceptable, notFound } from '@hapi/boom';
 import log from './log';
 
 export default {
     notFound: notFound,
     wrap: (error: any, functionName = 'default') => {
         log.error(error, functionName);
+
+        if (isBoom(error)) {
+            throw error;
+        }
 
         if (error.message.includes('EISDIR')) {
             throw notAcceptable(error);
@@ -14,6 +18,6 @@ export default {
             throw notFound(error);
         }
 
-        return boomify(error, { message: error.message });
+        throw boomify(error, { message: error.message });
     }
 };
