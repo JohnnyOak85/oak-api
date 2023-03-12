@@ -1,13 +1,12 @@
 import plugins from './plugins';
 import {
-    addPrefix,
     getCertifications,
     getVariables,
     startEnvironment,
     startServer,
     wrapError
 } from './shared';
-import { routes } from './routes';
+import routes from './routes';
 
 const init = async () => {
     try {
@@ -15,11 +14,7 @@ const init = async () => {
 
         const { host, port } = getVariables();
 
-        await startServer(
-            { host, port, tls: getCertifications() },
-            [...routes, ...addPrefix(routes, 'artemis')],
-            plugins
-        );
+        await startServer({ host, port, tls: getCertifications() }, routes, plugins);
     } catch (error) {
         throw wrapError(error, 'init');
     }
