@@ -6,3 +6,7 @@ const paths = {
 };
 
 export default paths;
+
+export const certificates = `${__dirname}/certs`;
+export const environment = `${__dirname}/.env`;
+export const logs = `${__dirname}/logs`;

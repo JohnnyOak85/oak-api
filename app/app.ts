@@ -1,32 +1,27 @@
-import Hapi from '@hapi/hapi';
-import { Certification, Environment, ErrorHandler, Logger } from './tools';
 import plugins from './plugins';
+import {
+    addPrefix,
+    getCertifications,
+    getVariables,
+    startEnvironment,
+    startServer,
+    wrapError
+} from './shared';
+import { routes } from './routes';
 
 const init = async () => {
     try {
-        Environment.start();
+        startEnvironment();
 
-        const { host, port } = Environment.get();
+        const { host, port } = getVariables();
 
-        const server = Hapi.server({
-            host,
-            port,
-            routes: {
-                cors: {
-                    origin: ['*'],
-                    headers: ['Accept', 'Content-Type'],
-                    additionalHeaders: ['X-Requested-With']
-                }
-            },
-            tls: Certification.get()
-        });
-
-        await server.register(plugins);
-        await server.start();
-
-        console.log('Server running on %s', server.info.uri);
+        await startServer(
+            { host, port, tls: getCertifications() },
+            [...routes, ...addPrefix(routes, 'artemis')],
+            plugins
+        );
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'init');
+        throw wrapError(error, 'init');
     }
 };
 
