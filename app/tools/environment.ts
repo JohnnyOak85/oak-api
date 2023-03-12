@@ -8,6 +8,8 @@ export default {
         dbAddress: process.env.DB_ADDRESS || '',
         dbName: process.env.DB_NAME || '',
         host: process.env.HOST || '',
+        newsApi: process.env.NEWS_API || '',
+        newsApiKey: process.env.NEWS_API_KEY || '',
         port: process.env.PORT || ''
     }),
     start: () => {
