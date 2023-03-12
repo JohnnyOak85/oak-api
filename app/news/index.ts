@@ -1,3 +1,1 @@
-import newsPlugin from './plugins/news.plugin';
-
-export default [newsPlugin];
+export * from './routes';
