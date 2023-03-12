@@ -1,12 +1,4 @@
-const paths = {
-    certificates: `${__dirname}/certs`,
-    environment: `${__dirname}/.env`,
-    logs: `${__dirname}/logs`,
-    resources: `${__dirname}/resources`
-};
-
-export default paths;
-
-export const certificates = `${__dirname}/certs`;
-export const environment = `${__dirname}/.env`;
-export const logs = `${__dirname}/logs`;
+export const certsPath = `${__dirname}/certs`;
+export const envPath = `${__dirname}/.env`;
+export const logsPath = `${__dirname}/logs`;
+export const resourcesPath = `${__dirname}/resources`;
