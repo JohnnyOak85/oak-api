@@ -1,11 +1,11 @@
 import { notFoundHandler } from '../../shared';
-import { getLogFile, getMainPage } from '../handlers';
+import { logHandler, mainHandler } from '../handlers';
 
 export const routes = [
     {
         method: 'GET',
         path: '/',
-        handler: getMainPage
+        handler: mainHandler
     },
     {
         method: '*',
@@ -15,6 +15,6 @@ export const routes = [
     {
         method: 'GET',
         path: '/log',
-        handler: getLogFile
+        handler: logHandler
     }
 ];
