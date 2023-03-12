@@ -1,13 +1,11 @@
-import { certificates } from '../../../paths';
-import { getVariables } from '../environment';
-import { getFile } from '../local';
+import { certsPath, getFile, getVariables } from '..';
 
 export const buildCertification = () => {
     const { certificate } = getVariables();
 
     return {
-        key: getFile(`${certificates}/${certificate}-key.pem`),
-        cert: getFile(`${certificates}/${certificate}-cert.pem`)
+        key: getFile(`${certsPath}/${certificate}-key.pem`),
+        cert: getFile(`${certsPath}/${certificate}-cert.pem`)
     };
 };
 
@@ -15,7 +13,7 @@ export const getCertifications = () => {
     const { certificate } = getVariables();
 
     return {
-        key: getFile(`${certificates}/${certificate}-key.pem`),
-        cert: getFile(`${certificates}/${certificate}-cert.pem`)
+        key: getFile(`${certsPath}/${certificate}-key.pem`),
+        cert: getFile(`${certsPath}/${certificate}-cert.pem`)
     };
 };

@@ -1,5 +1,5 @@
 import { Plugin, server, ServerOptions, ServerRoute } from '@hapi/hapi';
-import { wrapError } from '../../error';
+import { wrapError } from '../..';
 
 export const startServer = async (
     options: ServerOptions,

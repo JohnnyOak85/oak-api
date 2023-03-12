@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { Dictionary } from '../interfaces';
+import { Dictionary } from '..';
 
 type RequestOptions = {
     headers?: Dictionary<string>;

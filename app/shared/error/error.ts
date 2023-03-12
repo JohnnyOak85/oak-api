@@ -1,5 +1,5 @@
 import { boomify, Decorate, isBoom, notAcceptable, notFound, Options } from '@hapi/boom';
-import { logError } from '../log';
+import { logError } from '..';
 
 type ErrorOptions = Options<unknown> & Decorate<unknown>;
 
@@ -25,4 +25,4 @@ export const wrapError = (error: any, functionName = 'default', options?: ErrorO
     }
 };
 
-export { notFound } from '@hapi/boom';
+export const notFoundHandler = () => notFound();

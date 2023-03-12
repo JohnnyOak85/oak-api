@@ -1,6 +1,5 @@
 import nano from 'nano';
-import { Collector } from '../classes';
-import { getVariables } from '../environment';
+import { Collector, getVariables } from '..';
 
 class Database<T extends {}> {
     private db: nano.DocumentScope<T>;
