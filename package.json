@@ -1,5 +1,5 @@
 {
-    "name": "johnny-server",
+    "name": "oak-server",
     "version": "1.0.0",
     "description": "",
     "main": "app/app.ts",
