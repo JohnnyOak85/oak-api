@@ -1,5 +1,8 @@
-import { Plugin, server, ServerOptions, ServerRoute } from '@hapi/hapi';
+import { Plugin, Request, ResponseToolkit, server, ServerOptions, ServerRoute } from '@hapi/hapi';
 import { wrapError } from '../..';
+
+type Callback = (params: any) => any | Promise<any>;
+type RequestIndex = 'payload' | 'query';
 
 export const startServer = async (
     options: ServerOptions,
@@ -25,4 +28,14 @@ export const startServer = async (
     } catch (error) {
         throw wrapError(error, 'startServer');
     }
+};
+
+export const buildRouteHandler = (cb: Callback, index?: RequestIndex) => {
+    return async (request: Request, h: ResponseToolkit) => {
+        try {
+            return h.response(await cb(index ? request[index] : undefined));
+        } catch (error) {
+            throw wrapError(error, cb.name);
+        }
+    };
 };
