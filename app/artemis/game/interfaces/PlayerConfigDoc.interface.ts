@@ -1,8 +1,6 @@
-import Dictionary from '../../../interfaces/Dictionary.interface';
+import { Dictionary } from '../../../shared';
 
-type PlayerConfigDoc = {
+export type PlayerConfigDoc = {
     attributes: string[];
     ranks: Dictionary<string>;
 };
-
-export default PlayerConfigDoc;

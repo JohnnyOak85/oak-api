@@ -1,4 +1,4 @@
-import Dictionary from '../../../interfaces/Dictionary.interface';
+import { Dictionary } from '../../../shared';
 
 type RankData = {
     chance: number;
@@ -7,6 +7,4 @@ type RankData = {
     title: string;
 };
 
-type RanksDoc = Dictionary<RankData[]>;
-
-export default RanksDoc;
+export type RanksDoc = Dictionary<RankData[]>;

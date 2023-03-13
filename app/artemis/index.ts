@@ -1,5 +1,5 @@
-import game from './game/plugins';
+import users from './moderation/plugins/user.plugin';
 import reminders from './reminders/plugins/reminders.plugin';
 import speech from './speech/plugins';
 
-export default [...game, reminders, ...speech];
+export default [reminders, ...speech, users];

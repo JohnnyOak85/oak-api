@@ -1,4 +1,4 @@
-type StatsDoc = {
+export type StatsDoc = {
     attributes: {
         max: number;
         maxGain: number;
@@ -37,5 +37,3 @@ type StatsDoc = {
         minIncrement: number;
     };
 };
-
-export default StatsDoc;

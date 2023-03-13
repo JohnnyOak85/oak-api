@@ -1,6 +1,6 @@
-import Dictionary from '../../../interfaces/Dictionary.interface';
+import { Dictionary } from '../../../shared';
 
-type PlayerDoc = {
+export type PlayerDoc = {
     achievements: string[];
     attributes: Dictionary<number>;
     attack: number;
@@ -15,5 +15,3 @@ type PlayerDoc = {
     rank: string;
     wins: number;
 };
-
-export default PlayerDoc;

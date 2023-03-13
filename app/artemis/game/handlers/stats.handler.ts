@@ -1,12 +1,12 @@
-import { ErrorHandler, StorageHandler } from '../../../tools';
-import StatsDoc from '../interfaces/StatsDoc.interface';
-import DB_NAME from '../shared/DB_NAME';
+import { getDoc, wrapError } from '../../../shared';
+import { StatsDoc } from '../interfaces';
+import { DB_NAME } from '../shared';
 
 const getStats = async () => {
     try {
-        return StorageHandler.get<StatsDoc>(DB_NAME, 'stats');
+        return getDoc<StatsDoc>(DB_NAME, 'stats');
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getStats');
+        throw wrapError(error, 'getStats');
     }
 };
 
@@ -16,7 +16,7 @@ export const getAttributeStats = async () => {
 
         return attributes;
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getAttributeStats');
+        throw wrapError(error, 'getAttributeStats');
     }
 };
 
@@ -30,7 +30,7 @@ export const getBaseStats = async () => {
             health: health.base
         };
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getBaseStats');
+        throw wrapError(error, 'getBaseStats');
     }
 };
 
@@ -40,7 +40,7 @@ export const getBattleStats = async () => {
 
         return battle;
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getBattleStats');
+        throw wrapError(error, 'getBattleStats');
     }
 };
 
@@ -50,7 +50,7 @@ export const getHealthStats = async () => {
 
         return health;
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getHealthStats');
+        throw wrapError(error, 'getHealthStats');
     }
 };
 
@@ -60,7 +60,7 @@ export const getLevelStats = async () => {
 
         return level;
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getLevelStats');
+        throw wrapError(error, 'getLevelStats');
     }
 };
 
@@ -70,7 +70,7 @@ export const getLuckStats = async () => {
 
         return luck;
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getLuckStats');
+        throw wrapError(error, 'getLuckStats');
     }
 };
 
@@ -80,7 +80,7 @@ export const getMainStats = async () => {
 
         return stat;
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getMainStats');
+        throw wrapError(error, 'getMainStats');
     }
 };
 
@@ -94,6 +94,6 @@ export const getStatCaps = async () => {
             statCap: stat.cap
         };
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getStatCaps');
+        throw wrapError(error, 'getStatCaps');
     }
 };

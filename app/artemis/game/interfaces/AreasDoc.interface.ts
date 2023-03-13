@@ -1,6 +1,4 @@
-import Dictionary from '../../../interfaces/Dictionary.interface';
+import { Dictionary } from '../../../shared';
 
 type Area = Dictionary<string>[];
-type AreaDoc = Dictionary<Area>;
-
-export default AreaDoc;
+export type AreaDoc = Dictionary<Area>;

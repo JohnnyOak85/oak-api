@@ -1,1 +1,1 @@
-export default 'murwelgrave';
+export const DB_NAME = 'murwelgrave';
