@@ -1,4 +1,4 @@
-import PaymentEntryDoc from './PaymentEntryDoc.interface';
+import { PaymentEntryDoc } from '.';
 
 type Reoccurrence = 'debt' | 'monthly' | 'sporadic' | 'weekly';
 
@@ -7,7 +7,7 @@ interface PaymentHistory {
     date: number;
 }
 
-export default interface ExpenseDoc extends PaymentEntryDoc {
+export interface ExpenseDoc extends PaymentEntryDoc {
     lastUpdate: number;
     payDate: number;
     reoccurrence: Reoccurrence; // TODO Deal with this.

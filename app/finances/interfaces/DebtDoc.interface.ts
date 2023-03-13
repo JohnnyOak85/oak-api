@@ -1,5 +1,5 @@
-import PaymentEntryDoc from './PaymentEntryDoc.interface';
+import { PaymentEntryDoc } from '.';
 
-export default interface DebtDoc extends PaymentEntryDoc {
+export interface DebtDoc extends PaymentEntryDoc {
     remainder: number;
 }

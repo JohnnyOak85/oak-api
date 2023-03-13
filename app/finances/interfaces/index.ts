@@ -1,6 +1,5 @@
-import ContributorDoc from './ContributorDoc.interface';
-import DebtDoc from './DebtDoc.interface';
-import ExpenseDoc from './ExpenseDoc.interface';
-import PaymentEntryDoc from './PaymentEntryDoc.interface';
-
-export { ContributorDoc, DebtDoc, ExpenseDoc, PaymentEntryDoc };
+export * from './ContributorDoc.interface';
+export * from './DebtDoc.interface';
+export * from './ExpenseDoc.interface';
+export * from './PaymentEntryDoc.interface';
+export * from './WageInfo.type';

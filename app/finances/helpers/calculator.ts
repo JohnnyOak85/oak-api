@@ -1,8 +1,11 @@
 import { Dictionary, getDoc, round } from '../../shared';
+import { WageInfo } from '../interfaces';
 
 type IRSRanks = Dictionary<number>;
 
+const MEAL_DAYS = 19;
 const TOTAL_MONTHS = 12;
+const FINANCE_MONTHS = 14;
 const YEARLY_HOLIDAYS = 2;
 
 // Social Security
@@ -39,7 +42,7 @@ const calcTotalIRSCut = async (wage: number, applyPreviousRank: boolean) =>
 const calcPartialIRSCut = async (liquidWage: number, grossHolidayWage: number) =>
     Math.trunc(grossHolidayWage * (await findIRSPercentage(liquidWage))) * YEARLY_HOLIDAYS;
 
-export const calcLiquidWage = async (grossWage: number, applyPreviousRank: boolean) => {
+export const calcLiquidWage = async (grossWage: number, applyPreviousRank = false) => {
     const totalHolidayPay = round(grossWage / TOTAL_MONTHS) * YEARLY_HOLIDAYS;
     const totalPay = grossWage + totalHolidayPay;
 
@@ -62,3 +65,19 @@ export const calcLiquidWage = async (grossWage: number, applyPreviousRank: boole
 
 export const calcTotal = (entries: number[]) =>
     entries.reduce((accumulated, entry) => accumulated + entry, 0);
+
+export const calcMonthlyWage = async ({ benefit = 0, meal = 0, wage }: WageInfo) => {
+    const mealWage = meal * MEAL_DAYS;
+    const yearMeal = mealWage * TOTAL_MONTHS;
+    const yearBenefit = benefit * TOTAL_MONTHS;
+    const monthWage = (wage - yearBenefit - yearMeal) / FINANCE_MONTHS;
+
+    const { liquidWage } = await calcLiquidWage(monthWage);
+
+    return {
+        benefit: round(benefit),
+        meal: round(mealWage),
+        wage: round(liquidWage),
+        total: round(liquidWage + mealWage + benefit)
+    };
+};
