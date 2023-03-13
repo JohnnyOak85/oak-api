@@ -1,4 +1,5 @@
-import { getFile, resourcesPath, ServerRequest, ServerResponse, wrapError } from '../../shared';
+import { resourcesPath } from '../../../paths';
+import { getFile, ServerRequest, ServerResponse, wrapError } from '../../shared';
 
 export const mainHandler = async (request: ServerRequest, h: ServerResponse) => {
     try {

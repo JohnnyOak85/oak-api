@@ -1,4 +1,5 @@
-import { getFile, logsPath, ServerRequest, ServerResponse, wrapError } from '../../shared';
+import { logsPath } from '../../../paths';
+import { getFile, ServerRequest, ServerResponse, wrapError } from '../../shared';
 
 export const logHandler = async (request: ServerRequest, h: ServerResponse) => {
     try {
