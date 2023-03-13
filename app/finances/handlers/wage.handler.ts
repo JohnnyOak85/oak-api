@@ -1,4 +1,4 @@
-import { ServerRequest, ServerResponse, wrapError } from '../../shared';
+import { buildRouteHandler, ServerRequest, ServerResponse, wrapError } from '../../shared';
 import { calcMonthlyWage } from '../helpers';
 import { WageInfo } from '../interfaces';
 
@@ -9,3 +9,5 @@ export const getLiquidWageHandler = async (request: ServerRequest, h: ServerResp
         throw wrapError(error, 'getLiquidWageHandler');
     }
 };
+
+// const handler = buildRouteHandler(calcMonthlyWage);

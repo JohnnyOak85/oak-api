@@ -50,7 +50,7 @@ const calcPayments = async (contributor: Contributor, sharedWage: number) => {
     return contributor;
 };
 
-export const getContributors = async (request: ServerRequest, h: ServerResponse) => {
+export const getContributors = async () => {
     try {
         const contributorDocs = await getDocs<ContributorDoc>(DB_NAME, 'contributor');
 
@@ -60,10 +60,8 @@ export const getContributors = async (request: ServerRequest, h: ServerResponse)
 
         const sharedWage = calcTotal(contributors.map(contributor => contributor.liquidWage));
 
-        return h.response(
-            await Promise.all(
-                contributors.map(async contributor => await calcPayments(contributor, sharedWage))
-            )
+        return await Promise.all(
+            contributors.map(async contributor => await calcPayments(contributor, sharedWage))
         );
     } catch (error) {
         throw wrapError(error, 'getContributors');

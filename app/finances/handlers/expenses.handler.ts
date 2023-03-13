@@ -1,4 +1,4 @@
-import { getDocs, ServerRequest, ServerResponse, wrapError } from '../../shared';
+import { getDocs, wrapError } from '../../shared';
 import { calcTotal } from '../helpers';
 import { ExpenseDoc } from '../interfaces';
 
@@ -14,13 +14,5 @@ export const getExpenses = async (id = 'expense') => {
         };
     } catch (error) {
         throw wrapError(error, 'getExpenses');
-    }
-};
-
-export const getExpensesHandler = async (request: ServerRequest, h: ServerResponse) => {
-    try {
-        return h.response(await getExpenses());
-    } catch (error) {
-        throw wrapError(error, 'getExpensesHandler');
     }
 };

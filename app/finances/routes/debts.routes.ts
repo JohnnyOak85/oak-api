@@ -1,9 +1,10 @@
-import { getDebtsHandler } from '../handlers';
+import { buildRouteHandler } from '../../shared';
+import { getDebts } from '../handlers';
 
 export const routes = [
     {
         method: 'GET',
         path: '/debts',
-        handler: getDebtsHandler
+        handler: buildRouteHandler(getDebts)
     }
 ];
