@@ -14,7 +14,7 @@
   </a>
 
  <a href="https://www.codacy.com/gh/JohnnyOak85/oak-server/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JohnnyOak85/oak-server&amp;utm_campaign=Badge_Grade">
-    <img alt="Codacy Badge" src="https://app.codacy.com/project/badge/Grade/265c8b59fc5a481f8f83733eb7cd15a4"/>
+    <img alt="Codacy Badge" src="https://app.codacy.com/project/badge/Grade/265c8b59fc5a481f8f83733eb7cd15a4" />
  </a>
 </p>
 
