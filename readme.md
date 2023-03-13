@@ -25,25 +25,11 @@
 - [How to](#how-to)
 - [Artemis](#artemis)
   - [Game](#game)
-    - [Areas](#areas)
-    - [Players](#players)
-    - [Ranks](#ranks)
-    - [Stats](#stats)
   - [Moderation](#moderation)
-    - [Users](#users)
   - [News](#news)
   - [Reminders](#reminders)
   - [Speech](#speech)
-    - [Quirks](#quirks)
-    - [Quotes](#quotes)
-    - [Replies](#replies)
-    - [Story](#story)
-- [Basic](#basic)
 - [Finances](#finances)
-  - [Contributors](#contributors)
-  - [Debts](#debts)
-  - [Expenses](#expenses)
-  - [Wages](#wages)
 - [News](#news-1)
 
 ## Introduction
@@ -65,48 +51,11 @@ A module to be consumed by my [Discord Bot](https://github.com/JohnnyOak85/artem
 
 ### Game
 
-Retrieves all the needed files for Tales of Murwelgrave.
-
-#### Areas
-
-> GET /artemis/game/areas => Returns a string with the code of the current active area.  
-> GET /artemis/game/areas/data => Returns an array with the all the lists of monsters for the current area.  
-> GET /artemis/game/areas/list => Returns a single array with all the areas monsters.  
-> GET /artemis/game/areas/name => Returns a string with the name of the current active area.  
-> PUT /artemis/game/areas => Updates the current active area.
-
-#### Players
-
-> GET /artemis/game/players/all => Returns an array all players from the database.  
-> GET /artemis/game/players => Returns a single player object by id.  
-> GET /artemis/game/players/ranks => Returns an object with the possible player ranks.  
-> GET /artemis/game/players/attributes => Returns a string array of attributes.
-
-#### Ranks
-
-> GET /artemis/game/ranks => Returns the current areas monster rank information.
-
-#### Stats
-
-Returns various objects with integers for post battle buff gains.
-
-> GET /artemis/game/stats/attributes  
-> GET /artemis/game/stats/base  
-> GET /artemis/game/stats/battle  
-> GET /artemis/game/stats/caps  
-> GET /artemis/game/stats/health  
-> GET /artemis/game/stats/level  
-> GET /artemis/game/stats/luck  
-> GET /artemis/game/stats/main
+Retrieves all the needed files for Tales of Murwelgrave. An RPG style game where the player gets to engage randomly generated monsters. As they do, a battle will ensue, if they win their stats will go up and will be stored into the database. There are also achievements to be gained.
 
 ### Moderation
 
-WIP
-
-#### Users
-
-> GET /artemis/moderation/users => Returns a user object from the database.  
-> PUT /artemis/moderation/users => Creates or updates a user.
+Used for guild moderation purposes.
 
 ### News
 
@@ -114,65 +63,20 @@ Same as [News](#news) but with the `/artemis` prefix.
 
 ### Reminders
 
-> GET /artemis/reminders => Returns an array it all reminders from the database.
-> PUT /artemis/reminders => Creates or updates a reminder.
-> GET /artemis/reminders/config => Returns the configurations for reminders.
+Dated events of various types. Can be a birthday, a special date or a release date for a movie or video game.
 
 ### Speech
 
-A module to simulate speech for Artemis.
-
-#### Quirks
-
-> GET /artemis/speech/quirks => Returns a random array with speech quirks to be applied when Artemis sends a message to the guild.
-
-#### Quotes
-
-> GET /artemis/speech/quotes => Returns a string array.
-
-#### Replies
-
-> GET /artemis/speech/replies/greetings => Returns a string with possible greetings for Artemis to send when mentioned.  
-> GET /artemis/speech/replies/predictions => Returns a string array with Magic 8 Ball style answers.  
-> GET /artemis/speech/replies/reactions => Returns a dictionary with possible reactions for key words.  
-> GET /artemis/speech/replies/responses => Returns a dictionary with possible responses for key words.
-
-#### Story
-
-> GET /artemis/speech/story/blocks => Returns an array containing the various blocks to construct a story.  
-> GET /artemis/speech/story/decorators => Returns the decorators to apply to the story.
-
-## Basic
-
-The most basic endpoints.
-
-> GET / => Returns a simple HTML page just stating the server is online. I decided to return a dark page for the sake of my own eyes.  
-> ANY {wildcard} => Throws a not found error if the endpoint does not exist.  
-> GET /log => Returns a string array containing the server error log.
+A module to simulate speech for Artemis. Can be a greeting, a Magic 8 Ball style answers, or a reaction or response to certain key words. There is a random chance that a speech quirk will be applied to the text sent.  
+Here you can also get the necessary data to construct a randomly generated short story.
+There is also a list of quotes.
 
 ## Finances
 
-Module that deals with my own home finances.
-
-### Contributors
-
-> GET /finances/contributors => Returns an array containing the contributor info (me and my wife's details).
-
-### Debts
-
-> GET /finances/debts => Returns an array containing information for our shared debts.
-
-### Expenses
-
-> GET /finances/expenses => Returns an array containing information for our shared expenses.
-
-### Wages
-
-> GET /finances/wages => Receives gross yearly wage values and returns monthly liquid wage values.
+Module that deals with my own home finances. Mostly based around my own and my wife's financial situation.  
+The most interesting feature would be the calculators that give you a liquid wage out of a gross wage (based on Portugal).
 
 ## News
 
 Integrates with [NewscatcherAPI](https://newscatcherapi.com/) to retrieve the latest news articles.  
 More endpoints to come.
-
-> GET /news/gaming => Returns an array with the five latest gaming news.
