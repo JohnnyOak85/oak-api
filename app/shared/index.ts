@@ -7,7 +7,7 @@ export * from './integration';
 export * from './interfaces';
 export * from './local';
 export * from './log';
+export * from './math';
 export * from './server';
 export * from './time';
 export * from './types';
-export * from '../../paths';
