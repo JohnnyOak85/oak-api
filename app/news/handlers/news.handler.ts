@@ -1,9 +1,9 @@
-import { get, getDoc, getVariables, ServerRequest, ServerResponse, wrapError } from '../../shared';
+import { get, getDoc, getVariables, wrapError } from '../../shared';
 import { NewsConfigDoc, NewsResponse } from '../interfaces';
 
 const DB_NAME = 'news';
 
-export const getNews = async (request: ServerRequest, h: ServerResponse) => {
+export const getDailyGamingNews = async () => {
     try {
         const { newsApi, newsApiKey } = getVariables();
         const { daily } = await getDoc<NewsConfigDoc>(DB_NAME, 'config');
@@ -13,7 +13,7 @@ export const getNews = async (request: ServerRequest, h: ServerResponse) => {
             url: newsApi
         });
 
-        return h.response(data.articles);
+        return data.articles;
     } catch (error: any) {
         if (error.response?.data) {
             throw wrapError(error, 'getNews', {
