@@ -1,11 +1,11 @@
-import { notFoundHandler } from '../../shared';
-import { logHandler, mainHandler } from '../handlers';
+import { buildRouteHandler } from '../../shared';
+import { getMainPage, getLog, notFoundHandler } from '../handlers';
 
 export const routes = [
     {
         method: 'GET',
         path: '/',
-        handler: mainHandler
+        handler: buildRouteHandler(getMainPage)
     },
     {
         method: '*',
@@ -15,6 +15,6 @@ export const routes = [
     {
         method: 'GET',
         path: '/log',
-        handler: logHandler
+        handler: buildRouteHandler(getLog)
     }
 ];
