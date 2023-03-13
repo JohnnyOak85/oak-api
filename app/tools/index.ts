@@ -3,9 +3,7 @@ import error from './error';
 import files from './files';
 import identifier from './identifier';
 import math from './math';
-import cache from './cache';
 
-export const CacheHandler = cache;
 export const Calculator = math;
 export const ErrorHandler = error;
 export const FileHandler = files;

@@ -1,4 +1,4 @@
-import { getDoc, notFound, wrapError } from '../../../shared';
+import { getDoc, getValue, notFound, putValue, wrapError } from '../../../shared';
 import { AreaDoc } from '../interfaces';
 import { DB_NAME } from '../shared';
 
@@ -8,7 +8,7 @@ type AreaPayload = {
 
 export const getCurrentArea = async () => {
     try {
-        const currentArea = await CacheHandler.get('current-area');
+        const currentArea = await getValue('current-area');
 
         if (!currentArea) {
             throw notFound('Area is not set');
@@ -22,7 +22,7 @@ export const getCurrentArea = async () => {
 
 export const setCurrentArea = async ({ currentArea }: AreaPayload) => {
     try {
-        await CacheHandler.put('current-area', currentArea);
+        await putValue('current-area', currentArea);
 
         return 'true';
     } catch (error) {
