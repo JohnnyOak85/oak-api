@@ -1,13 +1,13 @@
 import { addPrefix } from '../../shared';
-import { routes as contributorsRoutes } from './contributors.routes';
-import { routes as debtsRoutes } from './debts.routes';
-import { routes as expensesRoutes } from './expenses.routes';
-import { routes as wageRoutes } from './wage.routes';
+import { routes as ContributorsRoutes } from './contributors.routes';
+import { routes as DebtsRoutes } from './debts.routes';
+import { routes as ExpensesRoutes } from './expenses.routes';
+import { routes as WageRoutes } from './wage.routes';
 
 const prefix = 'finances';
 export const routes = [
-    ...addPrefix(contributorsRoutes, prefix),
-    ...addPrefix(debtsRoutes, prefix),
-    ...addPrefix(expensesRoutes, prefix),
-    ...addPrefix(wageRoutes, prefix)
+    ...addPrefix(ContributorsRoutes, prefix),
+    ...addPrefix(DebtsRoutes, prefix),
+    ...addPrefix(ExpensesRoutes, prefix),
+    ...addPrefix(WageRoutes, prefix)
 ];

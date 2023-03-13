@@ -1,5 +1,6 @@
-import { routes as basicRoutes } from '../basic';
-import { routes as financesRoutes } from '../finances';
-import { routes as newsRoutes } from '../news';
+import { routes as ArtemisRoutes } from '../artemis';
+import { routes as BasicRoutes } from '../basic';
+import { routes as FinancesRoutes } from '../finances';
+import { routes as NewsRoutes } from '../news';
 
-export default [...basicRoutes, ...financesRoutes, ...newsRoutes];
+export default [...ArtemisRoutes, ...BasicRoutes, ...FinancesRoutes, ...NewsRoutes];
