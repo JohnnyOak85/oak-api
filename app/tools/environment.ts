@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
+import { envPath } from '../../paths';
 import log from './log';
-import paths from '../../paths';
 
 export default {
     get: () => ({
@@ -13,7 +13,7 @@ export default {
         port: process.env.PORT || ''
     }),
     start: () => {
-        const { error } = config({ path: paths.environment });
+        const { error } = config({ path: envPath });
 
         if (error) {
             log.error(error, 'startEnvironment');
