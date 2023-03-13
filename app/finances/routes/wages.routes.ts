@@ -8,7 +8,7 @@ export const routes = addPrefix(
     [
         {
             method: 'GET',
-            path: '/wage',
+            path: '',
             handler: buildRouteHandler(calcMonthlyWage, 'query'),
             options: {
                 validate: {

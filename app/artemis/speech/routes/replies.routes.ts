@@ -1,7 +1,7 @@
 import { addPrefix, buildRouteHandler } from '../../../shared';
 import { getGreetings, getPredictions, getReactions, getResponses } from '../handlers';
 
-const prefix = 'speech';
+const prefix = 'replies';
 
 export const routes = addPrefix(
     [
