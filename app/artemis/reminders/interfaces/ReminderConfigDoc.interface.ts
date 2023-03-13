@@ -1,5 +1,5 @@
 import { MaybeDocument } from 'nano';
 
-export default interface ReminderConfig extends MaybeDocument {
+export interface ReminderConfigDoc extends MaybeDocument {
     birthdays: string[];
 }

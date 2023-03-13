@@ -1,6 +1,6 @@
 import { MaybeDocument } from 'nano';
 
-export default interface ReminderDoc extends MaybeDocument {
+export interface ReminderDoc extends MaybeDocument {
     done?: boolean;
     event?: string;
     image?: string;

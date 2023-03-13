@@ -3,6 +3,7 @@ export * from './classes';
 export * from './database';
 export * from './environment';
 export * from './error';
+export * from './identification';
 export * from './integration';
 export * from './interfaces';
 export * from './local';

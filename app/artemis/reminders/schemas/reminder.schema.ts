@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-export default Joi.object().keys({
+export const ReminderSchema = Joi.object().keys({
     _id: Joi.string(),
     _rev: Joi.string(),
     done: Joi.boolean(),
