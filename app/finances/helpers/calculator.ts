@@ -1,7 +1,12 @@
 import { Dictionary, getDoc, round } from '../../shared';
-import { WageInfo } from '../interfaces';
 
 type IRSRanks = Dictionary<number>;
+
+type WageInfo = {
+    benefit?: number;
+    meal?: number;
+    wage: number;
+};
 
 const MEAL_DAYS = 19;
 const TOTAL_MONTHS = 12;

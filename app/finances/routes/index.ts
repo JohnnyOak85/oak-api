@@ -4,9 +4,10 @@ import { routes as debtsRoutes } from './debts.routes';
 import { routes as expensesRoutes } from './expenses.routes';
 import { routes as wageRoutes } from './wage.routes';
 
+const prefix = 'finances';
 export const routes = [
-    ...addPrefix(contributorsRoutes, 'finances'),
-    ...addPrefix(debtsRoutes, 'finances'),
-    ...addPrefix(expensesRoutes, 'finances'),
-    ...addPrefix(wageRoutes, 'finances')
+    ...addPrefix(contributorsRoutes, prefix),
+    ...addPrefix(debtsRoutes, prefix),
+    ...addPrefix(expensesRoutes, prefix),
+    ...addPrefix(wageRoutes, prefix)
 ];

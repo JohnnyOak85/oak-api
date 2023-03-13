@@ -1,10 +1,15 @@
-import { buildRouteHandler } from '../../shared';
+import { addPrefix, buildRouteHandler } from '../../shared';
 import { getDebts } from '../handlers';
 
-export const routes = [
-    {
-        method: 'GET',
-        path: '/debts',
-        handler: buildRouteHandler(getDebts)
-    }
-];
+const prefix = 'debts';
+
+export const routes = addPrefix(
+    [
+        {
+            method: 'GET',
+            path: '',
+            handler: buildRouteHandler(getDebts)
+        }
+    ],
+    prefix
+);
