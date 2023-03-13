@@ -8,7 +8,7 @@ import {
 } from '../handlers';
 import { AreaSchema } from '../schemas';
 
-const prefix = 'area';
+const prefix = 'areas';
 
 export const routes = addPrefix(
     [

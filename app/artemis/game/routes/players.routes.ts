@@ -2,7 +2,7 @@ import { addPrefix, buildRouteHandler } from '../../../shared';
 import { getPlayer, getPlayerAttributes, getPlayerRanks, getPlayers } from '../handlers';
 import { PlayerIdSchema } from '../schemas/player_id.schema';
 
-const prefix = 'player';
+const prefix = 'players';
 
 export const routes = addPrefix(
     [
