@@ -6,6 +6,6 @@ type QuirkEntry = {
     type?: 'letter' | 'punctuation' | 'suffix';
 };
 
-export default interface QuirkDoc extends MaybeDocument {
+export interface QuirkDoc extends MaybeDocument {
     quirks: QuirkEntry[][];
 }

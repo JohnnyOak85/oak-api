@@ -1,15 +1,15 @@
-import { ErrorHandler, StorageHandler } from '../../../tools';
-import SpeechDoc from '../interfaces/SpeechDoc.interface';
-import DB_NAME from '../shared/DB_NAME';
+import { getDoc, wrapError } from '../../../shared';
+import { SpeechDoc } from '../interfaces';
+import { DB_NAME } from '../shared';
 
-const getSpeechDoc = () => StorageHandler.get<SpeechDoc>(DB_NAME, 'speech');
+const getSpeechDoc = () => getDoc<SpeechDoc>(DB_NAME, 'speech');
 
 export const getGreetings = async () => {
     try {
         const { greetings } = await getSpeechDoc();
         return greetings;
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getGreetings');
+        throw wrapError(error, 'getGreetings');
     }
 };
 
@@ -18,7 +18,7 @@ export const getPredictions = async () => {
         const { predictions } = await getSpeechDoc();
         return predictions;
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getPredictions');
+        throw wrapError(error, 'getPredictions');
     }
 };
 
@@ -27,7 +27,7 @@ export const getReactions = async () => {
         const { reactions } = await getSpeechDoc();
         return reactions;
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getReactions');
+        throw wrapError(error, 'getReactions');
     }
 };
 
@@ -36,6 +36,6 @@ export const getResponses = async () => {
         const { responses } = await getSpeechDoc();
         return responses;
     } catch (error) {
-        throw ErrorHandler.wrap(error, 'getResponses');
+        throw wrapError(error, 'getResponses');
     }
 };

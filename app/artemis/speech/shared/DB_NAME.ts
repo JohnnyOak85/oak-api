@@ -1,1 +1,1 @@
-export default 'artemis';
+export const DB_NAME = 'artemis';

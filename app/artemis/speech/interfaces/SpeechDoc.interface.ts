@@ -1,7 +1,7 @@
 import { MaybeDocument } from 'nano';
-import Dictionary from '../../../../interfaces/Dictionary.interface';
+import { Dictionary } from '../../../shared';
 
-export default interface SpeechDoc extends MaybeDocument {
+export interface SpeechDoc extends MaybeDocument {
     greetings: string[];
     predictions: string[];
     reactions: Dictionary<string>;
