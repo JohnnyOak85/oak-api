@@ -20,10 +20,31 @@
 
 ## Table of Contents
 
--   [Table of Contents](#table-of-contents)
--   [Introduction](#introduction)
--   [How to](#how-to)
--   [Artemis](#artemis)
+- [Table of Contents](#table-of-contents)
+- [Introduction](#introduction)
+- [How to](#how-to)
+- [Artemis](#artemis)
+  - [Game](#game)
+    - [Areas](#areas)
+    - [Players](#players)
+    - [Ranks](#ranks)
+    - [Stats](#stats)
+  - [Moderation](#moderation)
+    - [Users](#users)
+  - [News](#news)
+  - [Reminders](#reminders)
+  - [Speech](#speech)
+    - [Quirks](#quirks)
+    - [Quotes](#quotes)
+    - [Replies](#replies)
+    - [Story](#story)
+- [Basic](#basic)
+- [Finances](#finances)
+  - [Contributors](#contributors)
+  - [Debts](#debts)
+  - [Expenses](#expenses)
+  - [Wages](#wages)
+- [News](#news-1)
 
 ## Introduction
 
