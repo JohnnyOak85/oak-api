@@ -1,4 +1,3 @@
-import plugins from './plugins';
 import {
     getCertifications,
     getVariables,
@@ -14,7 +13,7 @@ const init = async () => {
 
         const { host, port } = getVariables();
 
-        await startServer({ host, port, tls: getCertifications() }, routes, plugins);
+        await startServer({ host, port, tls: getCertifications() }, routes);
     } catch (error) {
         throw wrapError(error, 'init');
     }
