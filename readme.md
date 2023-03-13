@@ -20,17 +20,16 @@
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Introduction](#introduction)
-- [How to](#how-to)
-- [Artemis](#artemis)
-  - [Game](#game)
-  - [Moderation](#moderation)
-  - [News](#news)
-  - [Reminders](#reminders)
-  - [Speech](#speech)
-- [Finances](#finances)
-- [News](#news-1)
+-   [Introduction](#introduction)
+-   [How to](#how-to)
+-   [Artemis](#artemis)
+    -   [Game](#game)
+    -   [Moderation](#moderation)
+    -   [News](#news)
+    -   [Reminders](#reminders)
+    -   [Speech](#speech)
+-   [Finances](#finances)
+-   [News](#news-1)
 
 ## Introduction
 
