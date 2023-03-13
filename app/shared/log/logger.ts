@@ -1,5 +1,6 @@
 import { createLogger, format, transports } from 'winston';
-import { getTimestamp, logsPath } from '..';
+import { getTimestamp } from '..';
+import { logsPath } from '../../../paths';
 
 const logger = createLogger({
     level: 'info',

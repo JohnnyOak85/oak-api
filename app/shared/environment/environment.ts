@@ -1,5 +1,6 @@
 import { config } from 'dotenv';
-import { envPath, logError } from '..';
+import { logError } from '..';
+import { envPath } from '../../../paths';
 
 export const getVariables = () => ({
     certificate: process.env.CERTIFICATE || '',

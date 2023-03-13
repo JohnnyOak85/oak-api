@@ -1,4 +1,5 @@
-import { certsPath, getFile, getVariables } from '..';
+import { getFile, getVariables } from '..';
+import { certsPath } from '../../../paths';
 
 export const buildCertification = () => {
     const { certificate } = getVariables();
