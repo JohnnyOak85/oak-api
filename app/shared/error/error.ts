@@ -25,4 +25,4 @@ export const wrapError = (error: any, functionName = 'default', options?: ErrorO
     }
 };
 
-export const notFoundHandler = () => notFound();
+export { notFound };
