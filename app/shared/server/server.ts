@@ -1,5 +1,5 @@
 import { Plugin, Request, ResponseToolkit, server, ServerOptions, ServerRoute } from '@hapi/hapi';
-import { wrapError } from '../..';
+import { wrapError } from '..';
 
 type Callback = (params: any) => any | Promise<any>;
 type RequestIndex = 'payload' | 'query';
@@ -39,3 +39,9 @@ export const buildRouteHandler = (cb: Callback, index?: RequestIndex) => {
         }
     };
 };
+
+export const addPrefix = (routes: ServerRoute[], prefix: string) =>
+    routes.map(route => ({ ...route, path: `/${prefix}${route.path}` }));
+
+export type ServerRequest = Request;
+export type ServerResponse = ResponseToolkit;
