@@ -1,2 +1,3 @@
-export { ISO_3166_1_ALPHA_2 } from './ISO_3166_1_ALPHA_2.type';
-export { ISO_639_1 } from './ISO_639_1.type';
+export * from './Dictionary.type';
+export * from './ISO_3166_1_ALPHA_2.type';
+export * from './ISO_639_1.type';
