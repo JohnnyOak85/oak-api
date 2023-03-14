@@ -36,4 +36,4 @@ export const buildRouteHandler = (cb: Callback, index?: RequestIndex) => {
 };
 
 export const addPrefix = (routes: ServerRoute[], prefix: string) =>
-    routes.map(route => ({ ...route, path: `/${prefix}${route.path}` }));
+    routes.map(route => ({ ...route, path: `/${prefix}${route.path}` })) as ServerRoute[];
