@@ -15,13 +15,6 @@ export const getDailyGamingNews = async () => {
 
         return data.articles;
     } catch (error: any) {
-        if (error.response?.data) {
-            throw wrapError(error, 'getNews', {
-                message: error.response.data.message,
-                statusCode: error.response.status
-            });
-        }
-
         throw wrapError(error, 'getNews');
     }
 };

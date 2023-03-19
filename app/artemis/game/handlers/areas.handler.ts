@@ -1,20 +1,17 @@
-import { getDoc, getValue, notFound, putValue, wrapError } from '../../../shared';
+import { get, getDoc, notFound, wrapError, put, getVariables } from '../../../shared';
 import { AreaDoc } from '../interfaces';
 import { DB_NAME } from '../shared';
 
-type AreaPayload = {
-    currentArea: string;
-};
+type AreaPayload = { currentArea: string };
+
+const key = 'currentArea';
 
 export const getCurrentArea = async () => {
     try {
-        const currentArea = await getValue('current-area');
+        const { storageAddress: url } = getVariables();
+        const { data } = await get<string>({ url, params: { key } });
 
-        if (!currentArea) {
-            throw notFound('Area is not set');
-        }
-
-        return currentArea;
+        return data;
     } catch (error) {
         throw wrapError(error, 'getCurrentArea');
     }
@@ -22,9 +19,10 @@ export const getCurrentArea = async () => {
 
 export const setCurrentArea = async ({ currentArea }: AreaPayload) => {
     try {
-        await putValue('current-area', currentArea);
+        const { storageAddress: url } = getVariables();
+        const { data } = await put<string>({ url, data: { key, value: currentArea } });
 
-        return 'true';
+        return data;
     } catch (error) {
         throw wrapError(error, 'setCurrentArea');
     }
