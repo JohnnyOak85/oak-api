@@ -1,5 +1,5 @@
 <h1 align="center">
-  Oak Server<br>
+  Oak API<br>
 </h1>
 
 <p align="center">A multi purpose personal server</p>
