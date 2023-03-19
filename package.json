@@ -1,5 +1,5 @@
 {
-    "name": "oak-server",
+    "name": "oak-api",
     "version": "1.0.0",
     "description": "",
     "main": "app/app.ts",
