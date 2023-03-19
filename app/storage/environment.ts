@@ -1,5 +1,5 @@
 import { config } from 'dotenv';
-import { wrapError } from '../app/shared';
+import { wrapError } from '../shared';
 
 const path = `${__dirname}/.env`;
 

@@ -1,4 +1,4 @@
-import { startServer, wrapError } from '../app/shared';
+import { startServer, wrapError } from '../shared';
 import { getVariables } from './environment';
 import { routes } from './routes';
 

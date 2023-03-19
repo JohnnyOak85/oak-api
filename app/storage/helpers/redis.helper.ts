@@ -1,6 +1,6 @@
 import { createClient } from 'redis';
 import { getVariables } from '../environment';
-import { notFound } from '../../app/shared';
+import { notFound } from '../../shared';
 
 const getClient = () => {
     const { redisAddress: url } = getVariables();

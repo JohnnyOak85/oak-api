@@ -1,4 +1,4 @@
-import { object, string, ValidDatabases } from '../../app/shared';
+import { object, string, ValidDatabases } from '../../shared';
 
 export const ParamsSchema = {
     params: object().keys({

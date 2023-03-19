@@ -1,4 +1,4 @@
-import { object, string } from '../../app/shared';
+import { object, string } from '../../shared';
 
 export const QuerySchema = {
     query: object().keys({

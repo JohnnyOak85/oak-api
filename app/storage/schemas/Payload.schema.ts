@@ -1,4 +1,4 @@
-import { object, string } from '../../app/shared';
+import { object, string } from '../../shared';
 
 export const PayloadSchema = {
     payload: object()

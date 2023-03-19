@@ -1,4 +1,4 @@
-import { badData, teapot } from '../../app/shared';
+import { badData, teapot } from '../../shared';
 import { deleteDoc, deleteValue, getAll, getDoc, getValue, putDoc, putValue } from '../helpers';
 
 type Args = {

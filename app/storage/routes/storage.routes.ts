@@ -1,4 +1,4 @@
-import { buildRouteHandler, notFound } from '../../app/shared';
+import { buildRouteHandler, notFound } from '../../shared';
 import { DELETE, GET, PUT } from '../handlers';
 import { ParamsSchema, QuerySchema } from '../schemas';
 import { PayloadSchema } from '../schemas/Payload.schema';
