@@ -1,16 +1,8 @@
-import {
-    getCertifications,
-    getVariables,
-    startEnvironment,
-    startServer,
-    wrapError
-} from './shared';
+import { getCertifications, getVariables, startServer, wrapError } from './shared';
 import routes from './routes';
 
 const init = async () => {
     try {
-        startEnvironment();
-
         const { host, port } = getVariables();
 
         await startServer({ host, port, tls: getCertifications() }, routes);
