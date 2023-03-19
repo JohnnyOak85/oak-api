@@ -9,7 +9,7 @@ export const routes = addPrefix(
         {
             method: 'GET',
             path: '',
-            handler: buildRouteHandler(getUser, 'query'),
+            handler: buildRouteHandler(getUser),
             options: {
                 validate: {
                     query: UserIdSchema
@@ -19,7 +19,7 @@ export const routes = addPrefix(
         {
             method: 'PUT',
             path: '',
-            handler: buildRouteHandler(putUser, 'payload'),
+            handler: buildRouteHandler(putUser),
             options: {
                 validate: {
                     payload: UserSchema

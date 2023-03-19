@@ -14,7 +14,7 @@ export const routes = addPrefix(
         {
             method: 'PUT',
             path: '',
-            handler: buildRouteHandler(putReminder, 'payload'),
+            handler: buildRouteHandler(putReminder),
             options: {
                 validate: {
                     payload: ReminderSchema

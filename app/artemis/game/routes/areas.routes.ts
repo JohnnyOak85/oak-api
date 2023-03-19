@@ -35,7 +35,7 @@ export const routes = addPrefix(
         {
             method: 'PUT',
             path: '',
-            handler: buildRouteHandler(setCurrentArea, 'payload'),
+            handler: buildRouteHandler(setCurrentArea),
             options: {
                 validate: {
                     payload: AreaSchema

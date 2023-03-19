@@ -14,7 +14,7 @@ export const routes = addPrefix(
         {
             method: 'GET',
             path: '',
-            handler: buildRouteHandler(getPlayer, 'query'),
+            handler: buildRouteHandler(getPlayer),
             options: {
                 validate: {
                     query: PlayerIdSchema
