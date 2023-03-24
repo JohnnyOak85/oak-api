@@ -30,10 +30,11 @@
     -   [Speech](#speech)
 -   [Finances](#finances)
 -   [News](#news-1)
+-   [Storage](#storage)
 
 ## Introduction
 
-Oak server, as the name implies, is my own personal server to be used for all my apps.  
+Oak API, is a collection of self contained servers to be used by my own apps.  
 It connects to my database and other APIs that make sense for my needs.
 
 ## How to
@@ -42,7 +43,9 @@ If, for some reason, you want to try out this server yourself, or fork it, you n
 You also need to rename `example.env` to `.env` and add your own environment variables to it.
 
 Don't forget to `npm install` all the modules.  
-Then just `npm start` and you're good to go!
+Available scripts:
+- `npm run artemis` -> Starts Artemis API
+- `npm run storage` -> Starts Storage API
 
 ## Artemis
 
@@ -79,3 +82,7 @@ The most interesting feature would be the calculators that give you a liquid wag
 
 Integrates with [NewscatcherAPI](https://newscatcherapi.com/) to retrieve the latest news articles.  
 More endpoints to come.
+
+## Storage
+
+Encapsulates all communication with databases. So far I am using [Redis](https://redis.io/) and [CouchDB](https://couchdb.apache.org/).
