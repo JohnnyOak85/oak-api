@@ -1,13 +1,13 @@
 import { createLogger, format, transports } from 'winston';
-import { getTimestamp } from '..';
-import { logsPath } from '../../../paths';
+const { combine, errors, prettyPrint, timestamp } = format;
 
 const logger = createLogger({
-    level: 'info',
-    format: format.printf(log => `[${log.level.toUpperCase()}] - ${log.message}`),
-    defaultMeta: { service: 'user-service' },
-    transports: [new transports.File({ filename: `${logsPath}/log.txt` })]
+    format: combine(
+        errors({ stack: true }),
+        timestamp({ format: 'YYYY-MM-DD HH:mm:ss.SSS' }),
+        prettyPrint()
+    ),
+    transports: [new transports.File({ filename: 'error.log', level: 'error' })]
 });
 
-export const logError = (error: any, method: string) =>
-    logger.error(`${getTimestamp()} | Method: ${method} | Message: ${error}`);
+export const logError = (error: any, method: string) => logger.error(`${method} -> ${error}`);
