@@ -4,7 +4,6 @@ import { Dictionary } from '..';
 interface RequestOptions extends AxiosRequestConfig {
     data?: any;
     headers?: Dictionary<string>;
-    params?: any;
     url: string;
 }
 
