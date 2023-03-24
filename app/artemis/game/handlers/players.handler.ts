@@ -13,7 +13,7 @@ const getPlayerConfig = () => getData<PlayerConfigDoc>(DB_NAME, 'player_config')
 
 export const getPlayers = () => {
     try {
-        return getData<PlayerDoc>(DB_NAME, PREFIX, true);
+        return getData<PlayerDoc[]>(DB_NAME, PREFIX, true);
     } catch (error) {
         throw wrapError(error, 'getPlayers');
     }
