@@ -4,7 +4,9 @@
     "description": "",
     "main": "app/app.ts",
     "scripts": {
-        "start": "ts-node ./app/app.ts"
+        "artemis": "ts-node ./app/artemis/app.ts",
+        "start": "ts-node ./app/app.ts",
+        "storage": "ts-node ./app/storage/app.ts"
     },
     "keywords": [],
     "author": "",
