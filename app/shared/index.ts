@@ -9,7 +9,7 @@ export * from './integration';
 export * from './local';
 export * from './log';
 export * from './math';
+export * from './routes';
 export * from './server';
-export * from './time';
 export * from './types';
 export * from './validation';
