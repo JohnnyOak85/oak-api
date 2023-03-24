@@ -1,4 +1,4 @@
-import { Dictionary, getDoc, round } from '../../shared';
+import { Dictionary, getDoc, round } from '../../../shared';
 
 type IRSRanks = Dictionary<number>;
 

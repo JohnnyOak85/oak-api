@@ -1,12 +1,12 @@
-import { getDocs, wrapError } from '../../shared';
-import { calcTotal } from '../helpers';
+import { wrapError } from '../../../shared';
+import { calcTotal, getData } from '../helpers';
 import { ExpenseDoc } from '../interfaces';
 
 const DB_NAME = 'expenses';
 
 export const getExpenses = async (id = 'expense') => {
     try {
-        const expenses = await getDocs<ExpenseDoc>(DB_NAME, id);
+        const expenses = await getData<ExpenseDoc[]>(DB_NAME, id, true);
 
         return {
             expenses,

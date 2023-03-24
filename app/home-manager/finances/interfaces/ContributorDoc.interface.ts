@@ -1,6 +1,4 @@
-import { MaybeDocument } from 'nano';
-
-export interface ContributorDoc extends MaybeDocument {
+export interface ContributorDoc {
     financesCredentials: {
         username: string;
         password: string;

@@ -1,6 +1,6 @@
 import { getDebts, getExpenses } from '.';
-import { getDocs, round, wrapError } from '../../shared';
-import { calcLiquidWage, calcTotal } from '../helpers';
+import { round, wrapError } from '../../../shared';
+import { calcLiquidWage, calcTotal, getData } from '../helpers';
 import { ContributorDoc, DebtDoc, ExpenseDoc } from '../interfaces';
 
 type Contributor = {
@@ -52,7 +52,7 @@ const calcPayments = async (contributor: Contributor, sharedWage: number) => {
 
 export const getContributors = async () => {
     try {
-        const contributorDocs = await getDocs<ContributorDoc>(DB_NAME, 'contributor');
+        const contributorDocs = await getData<ContributorDoc[]>(DB_NAME, 'contributor', true);
 
         const contributors = await Promise.all(
             contributorDocs.map(async contributor => await calcFinances(contributor))

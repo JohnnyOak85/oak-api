@@ -1,4 +1,4 @@
-import { addPrefix, buildRouteHandler } from '../../shared';
+import { addPrefix, buildRouteHandler } from '../../../shared';
 import { getExpenses } from '../handlers';
 
 const prefix = 'expenses';

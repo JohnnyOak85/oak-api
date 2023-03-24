@@ -1,4 +1,4 @@
-import { addPrefix, buildRouteHandler } from '../../shared';
+import { addPrefix, buildRouteHandler } from '../../../shared';
 import { calcMonthlyWage } from '../helpers';
 import { WageSchema } from '../schema';
 
@@ -9,11 +9,9 @@ export const routes = addPrefix(
         {
             method: 'GET',
             path: '',
-            handler: buildRouteHandler(calcMonthlyWage, 'query'),
+            handler: buildRouteHandler(calcMonthlyWage),
             options: {
-                validate: {
-                    query: WageSchema
-                }
+                validate: WageSchema
             }
         }
     ],
