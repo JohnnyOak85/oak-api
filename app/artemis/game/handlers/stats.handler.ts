@@ -1,10 +1,11 @@
-import { getDoc, wrapError } from '../../../shared';
-import { StatsDoc } from '../interfaces';
+import { wrapError } from '../../../shared';
+import { getData } from '../../helpers';
+import { StatsDoc } from '../types';
 import { DB_NAME } from '../shared';
 
 const getStats = async () => {
     try {
-        return getDoc<StatsDoc>(DB_NAME, 'stats');
+        return getData<StatsDoc>(DB_NAME, 'stats');
     } catch (error) {
         throw wrapError(error, 'getStats');
     }

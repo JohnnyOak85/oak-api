@@ -37,9 +37,7 @@ export const routes = addPrefix(
             path: '',
             handler: buildRouteHandler(setCurrentArea),
             options: {
-                validate: {
-                    payload: AreaSchema
-                }
+                validate: AreaSchema
             }
         }
     ],

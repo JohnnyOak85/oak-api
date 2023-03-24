@@ -1,5 +1,7 @@
-import Joi from 'joi';
+import { object, string } from '../../../shared';
 
-export const UserIdSchema = Joi.object().keys({
-    userId: Joi.string()
-});
+export const UserIdSchema = {
+    params: object().keys({
+        id: string().required().description('Id string of the user you want to find')
+    })
+};

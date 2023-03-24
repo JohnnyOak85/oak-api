@@ -1,8 +1,9 @@
-import { getDoc, wrapError } from '../../../shared';
-import { RepliesDoc } from '../interfaces';
+import { wrapError } from '../../../shared';
+import { getData } from '../../helpers';
+import { RepliesDoc } from '../types';
 import { DB_NAME } from '../shared';
 
-const getSpeechDoc = () => getDoc<RepliesDoc>(DB_NAME, 'speech');
+const getSpeechDoc = () => getData<RepliesDoc>(DB_NAME, 'speech');
 
 export const getGreetings = async () => {
     try {

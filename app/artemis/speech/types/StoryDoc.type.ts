@@ -1,7 +1,6 @@
-import { MaybeDocument } from 'nano';
 import { Dictionary } from '../../../shared';
 
-export interface StoryDoc extends MaybeDocument {
+export type StoryDoc = {
     blocks: string[][];
     decorators: Dictionary<string[]>;
-}
+};

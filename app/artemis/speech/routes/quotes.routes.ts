@@ -3,6 +3,8 @@ import { getQuotes } from '../handlers';
 
 const prefix = 'quotes';
 
+// TODO Needs PUT endpoint
+
 export const routes = addPrefix(
     [
         {

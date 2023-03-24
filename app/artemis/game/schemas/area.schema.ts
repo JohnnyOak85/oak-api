@@ -1,5 +1,7 @@
-import Joi from 'joi';
+import { object, string } from '../../../shared';
 
-export const AreaSchema = Joi.object().keys({
-    currentArea: Joi.string().required().description('The code for a valid game area.')
-});
+export const AreaSchema = {
+    payload: object().keys({
+        currentArea: string().required().description('The code for a valid game area.')
+    })
+};

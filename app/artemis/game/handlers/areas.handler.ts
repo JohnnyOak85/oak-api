@@ -1,17 +1,13 @@
-import { get, getDoc, notFound, wrapError, put, getVariables } from '../../../shared';
-import { AreaDoc } from '../interfaces';
+import { notFound, wrapError } from '../../../shared';
+import { getData, putData } from '../../helpers';
+import { AreaDoc } from '../types';
 import { DB_NAME } from '../shared';
 
 type AreaPayload = { currentArea: string };
 
-const key = 'currentArea';
-
 export const getCurrentArea = async () => {
     try {
-        const { storageAddress: url } = getVariables();
-        const { data } = await get<string>({ url, params: { key } });
-
-        return data;
+        return getData<string>('redis', 'currentArea');
     } catch (error) {
         throw wrapError(error, 'getCurrentArea');
     }
@@ -19,10 +15,7 @@ export const getCurrentArea = async () => {
 
 export const setCurrentArea = async ({ currentArea }: AreaPayload) => {
     try {
-        const { storageAddress: url } = getVariables();
-        const { data } = await put<string>({ url, data: { key, value: currentArea } });
-
-        return data;
+        return putData<string>('redis', 'currentArea', currentArea);
     } catch (error) {
         throw wrapError(error, 'setCurrentArea');
     }
@@ -30,7 +23,7 @@ export const setCurrentArea = async ({ currentArea }: AreaPayload) => {
 
 export const getAreaData = async () => {
     try {
-        const areas = await getDoc<AreaDoc>(DB_NAME, 'areas');
+        const areas = await getData<AreaDoc>(DB_NAME, 'areas');
         const currentArea = await getCurrentArea();
 
         if (!areas[currentArea]) {

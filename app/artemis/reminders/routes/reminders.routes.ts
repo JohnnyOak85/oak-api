@@ -16,9 +16,7 @@ export const routes = addPrefix(
             path: '',
             handler: buildRouteHandler(putReminder),
             options: {
-                validate: {
-                    payload: ReminderSchema
-                }
+                validate: ReminderSchema
             }
         },
         {

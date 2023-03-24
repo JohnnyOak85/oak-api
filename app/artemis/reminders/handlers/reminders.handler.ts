@@ -1,38 +1,33 @@
-import { generateId, getDoc, getDocs, putDoc, wrapError } from '../../../shared';
-import { ReminderConfigDoc, ReminderDoc } from '../interfaces';
+import { generateId, wrapError } from '../../../shared';
+import { getData, putData } from '../../helpers';
+import { ReminderConfigDoc, ReminderDoc } from '../types';
 
 const DB_NAME = 'reminders';
 
-export const getReminders = async () => {
+export const getReminders = () => {
     try {
-        return await getDocs<ReminderDoc>(DB_NAME, 'reminder');
+        return getData<ReminderDoc>(DB_NAME, 'reminder', true);
     } catch (error) {
         throw wrapError(error, 'getReminders');
     }
 };
 
-export const getConfig = async () => {
+export const getConfig = () => {
     try {
-        return await getDoc<ReminderConfigDoc>(DB_NAME, 'config');
+        return getData<ReminderConfigDoc>(DB_NAME, 'config');
     } catch (error) {
         throw wrapError(error, 'getConfig');
     }
 };
 
-export const putReminder = async (reminder: ReminderDoc) => {
+export const putReminder = (reminder: ReminderDoc) => {
     try {
-        if (!reminder._id) {
-            reminder._id = `reminder_${generateId()}`;
+        if (!reminder.id) {
+            reminder.id = `reminder_${generateId()}`;
         }
 
-        const doc = await getDoc<ReminderDoc>(DB_NAME, reminder._id);
-
-        return await putDoc<ReminderDoc>(DB_NAME, { ...doc, ...reminder });
+        return putData<ReminderDoc>(DB_NAME, reminder.id, reminder);
     } catch (error: any) {
-        if (error.statusCode === 404) {
-            return await putDoc<ReminderDoc>(DB_NAME, reminder);
-        }
-
         throw wrapError(error, 'putReminder');
     }
 };

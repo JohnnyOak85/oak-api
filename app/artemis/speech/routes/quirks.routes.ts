@@ -3,6 +3,8 @@ import { getQuirks } from '../handlers';
 
 const prefix = 'quirks';
 
+// TODO Needs PUT endpoint
+
 export const routes = addPrefix(
     [
         {

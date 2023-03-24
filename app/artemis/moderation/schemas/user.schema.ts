@@ -1,10 +1,12 @@
-import Joi from 'joi';
+import { array, object, string } from '../../../shared';
 
-export const UserSchema = Joi.object().keys({
-    _id: Joi.string(),
-    _rev: Joi.string(),
-    id: Joi.string(),
-    nickname: Joi.string(),
-    roles: Joi.array().items(Joi.string()),
-    warnings: Joi.array().items(Joi.string())
-});
+export const UserSchema = {
+    payload: object().keys({
+        _id: string(),
+        _rev: string(),
+        id: string(),
+        nickname: string(),
+        roles: array().items(string()),
+        warnings: array().items(string())
+    })
+};

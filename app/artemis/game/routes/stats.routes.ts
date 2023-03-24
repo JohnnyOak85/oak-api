@@ -12,6 +12,8 @@ import {
 
 const prefix = 'stats';
 
+// TODO Need PUT endpoints
+
 export const routes = addPrefix(
     [
         {

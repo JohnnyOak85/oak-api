@@ -4,6 +4,7 @@ import { PlayerIdSchema } from '../schemas/player_id.schema';
 
 const prefix = 'players';
 
+// TODO Need Player PUT endpoint
 export const routes = addPrefix(
     [
         {
@@ -13,12 +14,10 @@ export const routes = addPrefix(
         },
         {
             method: 'GET',
-            path: '',
+            path: '/{id}',
             handler: buildRouteHandler(getPlayer),
             options: {
-                validate: {
-                    query: PlayerIdSchema
-                }
+                validate: PlayerIdSchema
             }
         },
         {

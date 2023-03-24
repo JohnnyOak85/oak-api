@@ -3,6 +3,8 @@ import { getBlocks, getDecorators } from '../handlers';
 
 const prefix = 'story';
 
+// TODO Needs PUT endpoints
+
 export const routes = addPrefix(
     [
         {

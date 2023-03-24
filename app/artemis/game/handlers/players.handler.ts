@@ -1,26 +1,27 @@
-import { getDoc, getDocs, wrapError } from '../../../shared';
-import { PlayerConfigDoc, PlayerDoc } from '../interfaces';
+import { wrapError } from '../../../shared';
+import { getData } from '../../helpers';
+import { PlayerConfigDoc, PlayerDoc } from '../types';
 import { DB_NAME } from '../shared';
 
 const PREFIX = 'gamer';
 
-type PlayerQuery = {
-    playerId: string;
+type Params = {
+    id: string;
 };
 
-const getPlayerConfig = () => getDoc<PlayerConfigDoc>(DB_NAME, 'player_config');
+const getPlayerConfig = () => getData<PlayerConfigDoc>(DB_NAME, 'player_config');
 
 export const getPlayers = () => {
     try {
-        return getDocs<PlayerDoc>(DB_NAME, PREFIX);
+        return getData<PlayerDoc>(DB_NAME, PREFIX, true);
     } catch (error) {
         throw wrapError(error, 'getPlayers');
     }
 };
 
-export const getPlayer = ({ playerId }: PlayerQuery) => {
+export const getPlayer = ({ id }: Params) => {
     try {
-        return getDoc<PlayerDoc>(DB_NAME, `${PREFIX}_${playerId}`);
+        return getData<PlayerDoc>(DB_NAME, `${PREFIX}_${id}`);
     } catch (error) {
         throw wrapError(error, 'getPlayer');
     }

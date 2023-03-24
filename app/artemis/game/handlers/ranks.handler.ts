@@ -1,11 +1,12 @@
 import { getCurrentArea } from '.';
-import { getDoc, notFound, wrapError } from '../../../shared';
-import { RanksDoc } from '../interfaces';
+import { notFound, wrapError } from '../../../shared';
+import { getData } from '../../helpers';
+import { RanksDoc } from '../types';
 import { DB_NAME } from '../shared';
 
 export const getRank = async () => {
     try {
-        const ranks = await getDoc<RanksDoc>(DB_NAME, 'ranks');
+        const ranks = await getData<RanksDoc>(DB_NAME, 'ranks');
         const currentArea = await getCurrentArea();
 
         if (!ranks[currentArea]) {

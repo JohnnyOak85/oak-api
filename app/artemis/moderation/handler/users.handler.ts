@@ -1,33 +1,32 @@
-import { getDoc, putDoc, wrapError } from '../../../shared';
-import { UserDoc } from '../interfaces';
+import { wrapError } from '../../../shared';
+import { getData, putData } from '../../helpers';
+import { UserDoc } from '../types';
+
+type Params = {
+    id: string;
+};
 
 const DB_NAME = 'artemis';
 const PREFIX = 'member';
 
-export const getUser = async (id: string) => {
+export const getUser = async ({ id }: Params) => {
     try {
-        return await getDoc<UserDoc>(DB_NAME, `${PREFIX}_${id}`);
+        return getData<UserDoc>(DB_NAME, `${PREFIX}_${id}`);
     } catch (error) {
         throw wrapError(error, 'getUser');
     }
 };
 
 export const putUser = async (user: UserDoc) => {
-    if (!user._id) {
-        user._id = `${PREFIX}_${user.id}`;
-    }
-
-    delete user.id;
-
     try {
-        const doc = await getDoc<UserDoc>(DB_NAME, `${PREFIX}_${user._id}`);
+        console.log(user);
 
-        return await putDoc<UserDoc>(DB_NAME, { ...doc, ...user });
-    } catch (error: any) {
-        if (error.statusCode === 404) {
-            return await putDoc<UserDoc>(DB_NAME, user);
+        if (!user.id) {
+            user.id = `${PREFIX}_${user.id}`;
         }
 
+        return putData<UserDoc>(DB_NAME, user.id, user);
+    } catch (error: any) {
         throw wrapError(error, 'putUser');
     }
 };
