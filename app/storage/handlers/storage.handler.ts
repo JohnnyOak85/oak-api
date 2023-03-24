@@ -5,7 +5,7 @@ type Args = {
     all: string;
     db: string;
     id: string;
-    value: string;
+    value: any;
 };
 
 const isRedis = (db: string) => db === 'redis';
@@ -31,7 +31,7 @@ export const GET = async ({ all, db, id }: Args) => {
     }
 };
 
-export const PUT = async ({ all, db, id, value, ...payload }: Args) => {
+export const PUT = async ({ db, id, value }: Args) => {
     try {
         if (isRedis(db)) {
             if (!value) {
@@ -41,7 +41,7 @@ export const PUT = async ({ all, db, id, value, ...payload }: Args) => {
             return await putValue(id, value);
         }
 
-        return await putDoc(db, { id, ...payload });
+        return await putDoc(db, { id, ...value });
     } catch (error) {
         throw error;
     }
