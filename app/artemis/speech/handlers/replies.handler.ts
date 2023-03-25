@@ -1,5 +1,4 @@
-import { logInfo, wrapError } from '../../../shared';
-import { getData } from '../../helpers';
+import { getData, logInfo, wrapError } from '../../../shared';
 import { RepliesDoc } from '../types';
 import { DB_NAME } from '../shared';
 

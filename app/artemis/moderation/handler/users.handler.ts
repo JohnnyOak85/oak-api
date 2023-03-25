@@ -1,5 +1,4 @@
-import { logInfo, wrapError } from '../../../shared';
-import { getData, putData } from '../../helpers';
+import { getData, logInfo, putData, wrapError } from '../../../shared';
 import { UserDoc } from '../types';
 
 type Params = {

@@ -1,5 +1,5 @@
-import { wrapError } from '../../../shared';
-import { calcTotal, getData } from '../helpers';
+import { getData, wrapError } from '../../../shared';
+import { calcTotal } from '../helpers';
 import { ExpenseDoc } from '../interfaces';
 
 const DB_NAME = 'expenses';

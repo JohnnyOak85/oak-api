@@ -1,5 +1,4 @@
-import { wrapError } from '../../../shared';
-import { getData } from '../helpers';
+import { getData, wrapError } from '../../../shared';
 import { DebtDoc } from '../interfaces';
 
 const DB_NAME = 'debts';

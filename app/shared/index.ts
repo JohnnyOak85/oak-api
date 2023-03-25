@@ -5,6 +5,7 @@ export * from './enums';
 export * from './environment';
 export * from './error';
 export * from './identification';
+export * from './helpers';
 export * from './integration';
 export * from './local';
 export * from './log';

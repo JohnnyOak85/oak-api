@@ -1,5 +1,4 @@
-import { logInfo, notFound, wrapError } from '../../../shared';
-import { getData, putData } from '../../helpers';
+import { getData, logInfo, notFound, putData, wrapError } from '../../../shared';
 import { AreaDoc } from '../types';
 import { DB_NAME } from '../shared';
 
