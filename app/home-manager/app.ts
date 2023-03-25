@@ -1,10 +1,9 @@
-import { startServer, wrapError } from '../shared';
-import { getVariables } from './environment';
+import { getVariables, startServer, wrapError } from '../shared';
 import { routes } from './routes';
 
 const init = async () => {
     try {
-        const { host, port } = getVariables();
+        const { host, homePort: port } = getVariables();
 
         await startServer({ host, port }, routes, 'home-manager');
     } catch (error) {

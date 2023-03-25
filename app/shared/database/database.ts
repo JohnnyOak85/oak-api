@@ -5,8 +5,8 @@ class Database<T extends {}> {
     private db: nano.DocumentScope<T>;
 
     constructor(dbName: string) {
-        const { dbAddress } = getVariables();
-        this.db = nano(dbAddress).db.use<T>(dbName);
+        const { couchAddress } = getVariables();
+        this.db = nano(couchAddress).db.use<T>(dbName);
     }
 
     public get = async (id: string) => this.db.get(id) as Promise<T>;

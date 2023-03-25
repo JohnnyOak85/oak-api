@@ -1,5 +1,5 @@
 import nano from 'nano';
-import { getVariables } from '../environment';
+import { getVariables } from '../../shared';
 
 const getClient = () => {
     const { couchAddress: url } = getVariables();
