@@ -1,4 +1,4 @@
-import { wrapError } from '../../../shared';
+import { logInfo, wrapError } from '../../../shared';
 import { getData, putData } from '../../helpers';
 import { UserDoc } from '../types';
 
@@ -11,6 +11,8 @@ const PREFIX = 'member';
 
 export const getUser = async ({ id }: Params) => {
     try {
+        logInfo('artemis:moderation', `Getting user ${id}`);
+
         return getData<UserDoc>(DB_NAME, `${PREFIX}_${id}`);
     } catch (error) {
         throw wrapError(error, 'getUser');
@@ -19,11 +21,11 @@ export const getUser = async ({ id }: Params) => {
 
 export const putUser = async (user: UserDoc) => {
     try {
-        console.log(user);
-
         if (!user.id) {
             user.id = `${PREFIX}_${user.id}`;
         }
+
+        logInfo('artemis:moderation', `Putting user ${user.id}`);
 
         return putData<UserDoc>(DB_NAME, user.id, user);
     } catch (error: any) {

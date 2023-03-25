@@ -1,5 +1,5 @@
 import { config } from 'dotenv';
-import { wrapError } from '../shared';
+import { logInfo, wrapError } from '../shared';
 
 const path = `${__dirname}/.env`;
 
@@ -10,6 +10,8 @@ const startEnvironment = () => {
         wrapError(error, 'startEnvironment');
         throw error;
     }
+
+    logInfo('storage', 'Environment started');
 };
 
 export const getVariables = () => {

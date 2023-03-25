@@ -7,7 +7,7 @@ const init = async () => {
         const { host, port } = getVariables();
         const tls = getCertifications();
 
-        await startServer({ host, port, tls }, routes);
+        await startServer({ host, port, tls }, routes, 'artemis');
     } catch (error) {
         throw wrapError(error, 'init');
     }

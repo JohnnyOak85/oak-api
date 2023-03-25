@@ -1,4 +1,4 @@
-import { wrapError } from '../../../shared';
+import { logInfo, wrapError } from '../../../shared';
 import { getData } from '../../helpers';
 import { StatsDoc } from '../types';
 import { DB_NAME } from '../shared';
@@ -13,6 +13,8 @@ const getStats = async () => {
 
 export const getAttributeStats = async () => {
     try {
+        logInfo('artemis:game', 'Getting attribute stats');
+
         const { attributes } = await getStats();
 
         return attributes;
@@ -23,6 +25,8 @@ export const getAttributeStats = async () => {
 
 export const getBaseStats = async () => {
     try {
+        logInfo('artemis:game', 'Getting base stats');
+
         const { health, stat } = await getStats();
 
         return {
@@ -37,6 +41,8 @@ export const getBaseStats = async () => {
 
 export const getBattleStats = async () => {
     try {
+        logInfo('artemis:game', 'Getting battle stats');
+
         const { battle } = await getStats();
 
         return battle;
@@ -47,6 +53,8 @@ export const getBattleStats = async () => {
 
 export const getHealthStats = async () => {
     try {
+        logInfo('artemis:game', 'Getting health stats');
+
         const { health } = await getStats();
 
         return health;
@@ -57,6 +65,8 @@ export const getHealthStats = async () => {
 
 export const getLevelStats = async () => {
     try {
+        logInfo('artemis:game', 'Getting level stats');
+
         const { level } = await getStats();
 
         return level;
@@ -67,6 +77,8 @@ export const getLevelStats = async () => {
 
 export const getLuckStats = async () => {
     try {
+        logInfo('artemis:game', 'Getting luck stats');
+
         const { luck } = await getStats();
 
         return luck;
@@ -77,6 +89,8 @@ export const getLuckStats = async () => {
 
 export const getMainStats = async () => {
     try {
+        logInfo('artemis:game', 'Getting main stats');
+
         const { stat } = await getStats();
 
         return stat;
@@ -87,6 +101,8 @@ export const getMainStats = async () => {
 
 export const getStatCaps = async () => {
     try {
+        logInfo('artemis:game', 'Getting stat caps');
+
         const { health, luck, stat } = await getStats();
 
         return {

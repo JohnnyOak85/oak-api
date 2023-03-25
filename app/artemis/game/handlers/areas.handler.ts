@@ -1,4 +1,4 @@
-import { notFound, wrapError } from '../../../shared';
+import { logInfo, notFound, wrapError } from '../../../shared';
 import { getData, putData } from '../../helpers';
 import { AreaDoc } from '../types';
 import { DB_NAME } from '../shared';
@@ -7,6 +7,8 @@ type AreaPayload = { currentArea: string };
 
 export const getCurrentArea = async () => {
     try {
+        logInfo('artemis:game', 'Getting current area');
+
         return getData<string>('redis', 'currentArea');
     } catch (error) {
         throw wrapError(error, 'getCurrentArea');
@@ -15,6 +17,8 @@ export const getCurrentArea = async () => {
 
 export const setCurrentArea = async ({ currentArea }: AreaPayload) => {
     try {
+        logInfo('artemis:game', 'Setting current area');
+
         return putData<string>('redis', 'currentArea', currentArea);
     } catch (error) {
         throw wrapError(error, 'setCurrentArea');
@@ -23,6 +27,8 @@ export const setCurrentArea = async ({ currentArea }: AreaPayload) => {
 
 export const getAreaData = async () => {
     try {
+        logInfo('artemis:game', 'Getting current area data');
+
         const areas = await getData<AreaDoc>(DB_NAME, 'areas');
         const currentArea = await getCurrentArea();
 
@@ -38,6 +44,8 @@ export const getAreaData = async () => {
 
 export const getAreaName = async () => {
     try {
+        logInfo('artemis:game', 'Getting current area name');
+
         const currentArea = await getCurrentArea();
 
         return currentArea
@@ -51,6 +59,8 @@ export const getAreaName = async () => {
 
 export const getAreaMonsters = async () => {
     try {
+        logInfo('artemis:game', 'Getting current area monster list');
+
         const currentArea = await getAreaData();
 
         return currentArea.map(rank => Object.keys(rank)).flat();

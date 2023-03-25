@@ -1,9 +1,13 @@
 import { Request, ResponseToolkit, server, ServerOptions, ServerRoute } from '@hapi/hapi';
-import { wrapError } from '..';
+import { logInfo, wrapError } from '..';
 
 type Callback = (args: any) => any | Promise<any>;
 
-export const startServer = async (options: ServerOptions, routes: ServerRoute[]) => {
+export const startServer = async (
+    options: ServerOptions,
+    routes: ServerRoute[],
+    module: string
+) => {
     try {
         options.routes = {
             cors: {
@@ -18,6 +22,7 @@ export const startServer = async (options: ServerOptions, routes: ServerRoute[])
         client.route(routes);
         await client.start();
 
+        logInfo(module, `Server running on ${client.info.uri}`);
         console.log('Server running on %s', client.info.uri);
     } catch (error) {
         throw wrapError(error, 'startServer');

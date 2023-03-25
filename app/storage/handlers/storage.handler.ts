@@ -1,4 +1,4 @@
-import { badData, teapot } from '../../shared';
+import { badData, logInfo, teapot } from '../../shared';
 import { deleteDoc, deleteValue, getAll, getDoc, getValue, putDoc, putValue } from '../helpers';
 
 type Args = {
@@ -13,6 +13,8 @@ const parseBoolean = (bool: string) => (bool === 'true' ? true : false);
 
 export const GET = async ({ all, db, id }: Args) => {
     try {
+        logInfo('storage', `GET:${db}:${id}`);
+
         if (isRedis(db)) {
             if (parseBoolean(all)) {
                 throw teapot();
@@ -33,6 +35,8 @@ export const GET = async ({ all, db, id }: Args) => {
 
 export const PUT = async ({ db, id, value }: Args) => {
     try {
+        logInfo('storage', `PUT:${db}:${id}`);
+
         if (isRedis(db)) {
             if (!value) {
                 throw badData();
@@ -49,6 +53,8 @@ export const PUT = async ({ db, id, value }: Args) => {
 
 export const DELETE = async ({ db, id }: Args) => {
     try {
+        logInfo('storage', `DELETE:${db}:${id}`);
+
         if (isRedis(db)) {
             return await deleteValue(id);
         }
