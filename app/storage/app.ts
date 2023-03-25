@@ -7,7 +7,7 @@ const init = async () => {
 
         await startServer({ host, port }, routes, 'storage');
     } catch (error) {
-        throw wrapError(error, 'init');
+        throw wrapError(error, 'storage');
     }
 };
 
