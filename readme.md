@@ -28,7 +28,8 @@
     -   [News](#news)
     -   [Reminders](#reminders)
     -   [Speech](#speech)
--   [Finances](#finances)
+-   [Home Manager](#home-manager)
+    -   [Finances](#finances)
 -   [News](#news-1)
 -   [Storage](#storage)
 
