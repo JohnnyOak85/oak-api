@@ -1,12 +1,13 @@
-import { startServer, wrapError } from '../shared';
+import { getCertifications, startServer, wrapError } from '../shared';
 import { getVariables } from './environment';
 import { routes } from './routes';
 
 const init = async () => {
     try {
         const { host, port } = getVariables();
+        const tls = getCertifications();
 
-        await startServer({ host, port }, routes);
+        await startServer({ host, port, tls }, routes);
     } catch (error) {
         throw wrapError(error, 'init');
     }
