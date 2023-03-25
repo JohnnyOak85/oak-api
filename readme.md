@@ -44,8 +44,8 @@ You also need to rename `example.env` to `.env` and add your own environment var
 
 Don't forget to `npm install` all the modules.  
 Available scripts:
-- `npm run artemis` -> Starts Artemis API
-- `npm run storage` -> Starts Storage API
+-   `npm run artemis` -> Starts Artemis API
+-   `npm run storage` -> Starts Storage API
 
 ## Artemis
 
