@@ -28,7 +28,8 @@
     -   [News](#news)
     -   [Reminders](#reminders)
     -   [Speech](#speech)
--   [Finances](#finances)
+-   [Home Manager](#home-manager)
+    -   [Finances](#finances)
 -   [News](#news-1)
 -   [Storage](#storage)
 
@@ -73,7 +74,11 @@ A module to simulate speech for Artemis. Can be a greeting, a Magic 8 Ball style
 Here you can also get the necessary data to construct a randomly generated short story.
 There is also a list of quotes.
 
-## Finances
+## Home Manager
+
+A module to deal with various home related functions. Still a work in progress.
+
+### Finances
 
 Module that deals with my own home finances. Mostly based around my own and my wife's financial situation.  
 The most interesting feature would be the calculators that give you a liquid wage out of a gross wage (based on Portugal).
