@@ -21,17 +21,29 @@ export const getVariables = () => {
             setEnvironment();
         }
 
+        const {
+            ARTEMIS_PORT,
+            CERTIFICATE,
+            COUCH_ADDRESS,
+            HOME_PORT,
+            HOST,
+            NEWS_API,
+            NEWS_API_KEY,
+            REDIS_ADDRESS,
+            STORAGE_PORT
+        } = process.env;
+
         return {
-            host: process.env.HOST!,
-            artemisPort: process.env.ARTEMIS_PORT!,
-            homePort: process.env.HOME_PORT!,
-            storagePort: process.env.STORAGE_PORT!,
-            storageAddress: `http://${process.env.HOST}${process.env.STORAGE_PORT}`,
-            couchAddress: process.env.COUCH_ADDRESS!,
-            redisAddress: process.env.REDIS_ADDRESS!,
-            certificate: process.env.CERTIFICATE!,
-            newsApi: process.env.NEWS_API!,
-            newsApiKey: process.env.NEWS_API_KEY!
+            host: HOST!,
+            artemisPort: ARTEMIS_PORT!,
+            homePort: HOME_PORT!,
+            storagePort: STORAGE_PORT!,
+            storageAddress: `http://${HOST}${STORAGE_PORT}`,
+            couchAddress: COUCH_ADDRESS!,
+            redisAddress: REDIS_ADDRESS!,
+            certificate: CERTIFICATE!,
+            newsApi: NEWS_API!,
+            newsApiKey: NEWS_API_KEY!
         };
     } catch (error) {
         throw error;
