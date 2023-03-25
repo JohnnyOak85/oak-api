@@ -6,7 +6,7 @@ const DB_NAME = 'reminders';
 
 export const getReminders = () => {
     try {
-        logInfo('artemis:reminders', 'Getting all reminders');
+        logInfo('artemis/reminders', 'Getting all reminders');
 
         return getData<ReminderDoc>(DB_NAME, 'reminder', true);
     } catch (error) {
@@ -16,7 +16,7 @@ export const getReminders = () => {
 
 export const getConfig = () => {
     try {
-        logInfo('artemis:reminders', 'Getting reminder config');
+        logInfo('artemis/reminders', 'Getting reminder config');
 
         return getData<ReminderConfigDoc>(DB_NAME, 'config');
     } catch (error) {
@@ -30,7 +30,7 @@ export const putReminder = (reminder: ReminderDoc) => {
             reminder.id = `reminder_${generateId()}`;
         }
 
-        logInfo('artemis:reminders', `Putting reminder ${reminder.id}`);
+        logInfo('artemis/reminders', `Putting reminder ${reminder.id}`);
 
         return putData<ReminderDoc>(DB_NAME, reminder.id, reminder);
     } catch (error: any) {
