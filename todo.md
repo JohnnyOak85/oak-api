@@ -35,6 +35,6 @@
 
 ## News
 
--   Need to add ciber security news
+-   Need to add cyber security news
 -   Need to add science news
 -   Need to add entertainment news
