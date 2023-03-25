@@ -1,5 +1,7 @@
-/node_modules
-.env
-*/log
-todo.md
+# Folders
 /certs
+/node_modules
+
+# Files
+*.log
+.env
